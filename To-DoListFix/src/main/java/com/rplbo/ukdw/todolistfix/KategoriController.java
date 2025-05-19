@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 
@@ -51,7 +52,6 @@ public class KategoriController implements Initializable {
 
         tabell.setItems(daftarKategori);
 
-        // Tambahkan event double click untuk edit
         tabell.setRowFactory(tv -> {
             TableRow<Kategori> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
@@ -66,17 +66,22 @@ public class KategoriController implements Initializable {
 
     @FXML
     private void handleTambahKategori() {
-        bukaFormEdit(null); // null berarti buat baru
+        bukaFormEdit(null);
     }
+
 
     public void tambahKategori(Kategori kategori) {
         daftarKategori.add(kategori);
         tabell.refresh();
+
+
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Peringatan");
+        alert.setHeaderText(null);
+        alert.setContentText("Kategori sudah berhasil ditambahkan!!");
+        alert.showAndWait();
     }
 
-    public void updateKategori() {
-        tabell.refresh(); // cukup karena objeknya direferensikan langsung
-    }
 
     public int getNextNo() {
         return daftarKategori.size() + 1;
@@ -89,7 +94,7 @@ public class KategoriController implements Initializable {
 
             FormKategoriController controller = loader.getController();
             controller.setParentController(this);
-            controller.setKategori(kategori); // bisa null untuk tambah baru
+            controller.setKategori(kategori);
 
             Stage stage = new Stage();
             stage.setTitle(kategori == null ? "Tambah Kategori" : "Edit Kategori");
@@ -99,6 +104,46 @@ public class KategoriController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void handleEditKategori() {
+        Kategori selectedKategori = tabell.getSelectionModel().getSelectedItem();
+
+        if (selectedKategori != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("EditKategori.fxml"));
+                Parent root = loader.load();
+
+                EditKategoriController controller = loader.getController();
+                controller.setKategori(selectedKategori);
+
+                Stage stage = new Stage();
+                stage.setTitle("Edit Kategori");
+                stage.setScene(new Scene(root));
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.showAndWait();
+
+                tabell.refresh();
+
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("HORE");
+                alert.setHeaderText(null);
+                alert.setContentText("Kategori sudah berhasil di edit!!");
+                alert.showAndWait();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Peringatan");
+            alert.setHeaderText(null);
+            alert.setContentText("Silakan pilih kategori yang ingin diedit.");
+            alert.showAndWait();
+        }
+    }
+
 
     @FXML
     private void handleHapusKategori() {

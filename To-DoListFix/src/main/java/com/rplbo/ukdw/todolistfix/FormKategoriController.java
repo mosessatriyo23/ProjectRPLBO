@@ -1,6 +1,7 @@
 package com.rplbo.ukdw.todolistfix;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -14,8 +15,8 @@ public class FormKategoriController {
     @FXML
     private TextField txtTugas;
 
-    private com.rplbo.ukdw.todolistfix.KategoriController parentController; // referensi controller utama
-    private com.rplbo.ukdw.todolistfix.Kategori kategoriEdit; // untuk edit
+    private com.rplbo.ukdw.todolistfix.KategoriController parentController;
+    private com.rplbo.ukdw.todolistfix.Kategori kategoriEdit;
 
     public void setParentController(com.rplbo.ukdw.todolistfix.KategoriController controller) {
         this.parentController = controller;
@@ -40,8 +41,9 @@ public class FormKategoriController {
             kategoriEdit.setNama(nama);
             kategoriEdit.setDeskripsi(deskripsi);
             kategoriEdit.setTugas(tugas);
+
         } else {
-            int no = parentController.getNextNo(); // metode bantu di controller utama
+            int no = parentController.getNextNo();
             com.rplbo.ukdw.todolistfix.Kategori kategoriBaru = new com.rplbo.ukdw.todolistfix.Kategori(no, nama, deskripsi, tugas);
             parentController.tambahKategori(kategoriBaru);
         }
