@@ -193,7 +193,7 @@
                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                     </padding>
                                 </Button>
-                                <Button layoutX="284.0" layoutY="28.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="164.0" style="-fx-border-style: 10;" styleClass="btnTambahTugas" stylesheets="@../css/styles.css" text="Tambah Kategori">
+                                <Button layoutX="284.0" layoutY="28.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="164.0" style="-fx-border-style: 10;" styleClass="btnTambahTugas" onAction="#handleTambahKategori" stylesheets="@../css/styles.css" text="Tambah Kategori">
                                     <font>
                                         <Font name="Arial" size="12.0" />
                                     </font>
