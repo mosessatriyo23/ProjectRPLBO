@@ -9,7 +9,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
 
 public class ToDoListApplication extends Application {
     private static Stage primaryStage;
@@ -36,14 +35,13 @@ public class ToDoListApplication extends Application {
         primaryStage.getScene().setRoot(loadFXML(fxml));
         primaryStage.sizeToScene();
         primaryStage.setResizable(isResizeable);
-        if(title !=null){
+        if (title != null) {
             primaryStage.setTitle(title);
         }
         primaryStage.show();
     }
 
-    public static void openViewWithModal(String fxml, boolean isResizeable)
-            throws IOException {
+    public static void openViewWithModal(String fxml, boolean isResizeable) throws IOException {
         Stage stage = new Stage();
         stage.setScene(new Scene(loadFXML(fxml)));
         stage.sizeToScene();
