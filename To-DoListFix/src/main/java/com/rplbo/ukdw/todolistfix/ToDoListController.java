@@ -34,7 +34,7 @@ public class ToDoListController implements Initializable {
                 Calendar cal = Calendar.getInstance();
                 String time = new SimpleDateFormat("HH:mm:ss").format(cal.getTime());
                 String tanggal = new SimpleDateFormat("dd MMM yyyy").format(cal.getTime());
-                
+
                 javafx.application.Platform.runLater(() -> {
                     lblJmMntDtk.setText(time);
                     lblTglBlnThn.setText(tanggal);
@@ -70,7 +70,7 @@ public class ToDoListController implements Initializable {
         }
 
         Parent root = FXMLLoader.load(fxmlUrl);
-        Stage stage = (Stage) btnHome.getScene().getWindow(); // atau ganti dengan node lain jika null
+        Stage stage = (Stage) btnHome.getScene().getWindow();
         stage.setScene(new Scene(root));
     }
 
