@@ -188,7 +188,7 @@
                                 <Font name="System Bold" size="20.0" />
                             </font>
                         </Label>
-                        <TextField prefHeight="0.0" prefWidth="227.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <TextField fx:id="txtJudulTugas" prefHeight="0.0" prefWidth="227.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                             <GridPane.margin>
                                 <Insets left="50.0" right="100.0" />
                             </GridPane.margin>
@@ -196,7 +196,7 @@
                                 <Insets />
                             </opaqueInsets>
                         </TextField>
-                        <TextField prefHeight="129.0" prefWidth="415.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <TextField fx:id="txtDeskripsiTugas" alignment="TOP_LEFT" prefHeight="129.0" prefWidth="415.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
@@ -204,9 +204,9 @@
                                 <Insets left="50.0" right="100.0" />
                             </GridPane.margin>
                         </TextField>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #ffaf00;" text="Simpan" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                        <Button fx:id="btnSimpan" mnemonicParsing="false" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: #ffaf00; -fx-font-weight: 950;" text="Simpan" GridPane.columnIndex="2" GridPane.rowIndex="4">
                             <font>
-                                <Font name="Poppins SemiBold" size="9.0" />
+                                <Font name="System Bold" size="14.0" />
                             </font>
                             <opaqueInsets>
                                 <Insets />
@@ -220,18 +220,18 @@
                                 <Font name="System Bold" size="20.0" />
                             </font>
                         </Label>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: lightgrey;" text="Batal" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                        <Button fx:id="btnBatal" mnemonicParsing="false" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: lightgrey;" text="Batal" GridPane.columnIndex="2" GridPane.rowIndex="4">
                             <font>
-                                <Font name="Poppins SemiBold" size="9.0" />
+                                <Font name="System Bold" size="14.0" />
                             </font>
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
                             <GridPane.margin>
-                                <Insets bottom="30.0" left="130.0" top="50.0" />
+                                <Insets bottom="30.0" left="150.0" top="50.0" />
                             </GridPane.margin>
                         </Button>
-                        <ComboBox prefHeight="14.0" prefWidth="194.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                        <ComboBox fx:id="cmbKategoriTugas" prefHeight="14.0" prefWidth="194.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                             <GridPane.margin>
                                 <Insets left="50.0" right="100.0" />
                             </GridPane.margin>
@@ -256,10 +256,13 @@
                                 <Font name="System Bold" size="20.0" />
                             </font>
                         </Text>
-                  <CheckBox mnemonicParsing="false" prefHeight="17.0" prefWidth="75.0" text="Priotias" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                  <CheckBox fx:id="chkPrioritas" mnemonicParsing="false" prefHeight="17.0" prefWidth="75.0" text="Priotias" GridPane.columnIndex="2" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets bottom="70.0" left="50.0" />
                      </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
                   </CheckBox>
                     </children>
                 </GridPane>
