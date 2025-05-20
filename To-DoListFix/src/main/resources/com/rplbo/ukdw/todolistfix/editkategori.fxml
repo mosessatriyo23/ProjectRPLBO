@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.rplbo.ukdw.todolistfix.EditKategoriController"
+            prefHeight="400.0" prefWidth="600.0">
+    <children>
+        <VBox spacing="10" alignment="CENTER_LEFT" layoutX="30" layoutY="20">
+            <children>
+
+                <Label text="Edit Kategori">
+                    <font>
+                        <Font size="20"/>
+                    </font>
+                </Label>
+
+                <Label text="Nama Kategori"/>
+                <TextField fx:id="txtNamaKategori" prefWidth="300"/>
+
+                <Label text="Deskripsi"/>
+                <TextArea fx:id="txtDeskripsi" prefWidth="300" prefHeight="100"/>
+
+                <HBox spacing="10" alignment="CENTER_RIGHT">
+                    <children>
+                        <Button text="Batal" onAction="#handleBatal"/>
+                        <Button text="Simpan" onAction="#handleSimpan"/>
+                    </children>
+                </HBox>
+
+            </children>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </VBox>
+    </children>
+
+</AnchorPane>

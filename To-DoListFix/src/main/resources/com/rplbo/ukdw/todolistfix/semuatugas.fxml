@@ -178,7 +178,7 @@
                                 <Insets bottom="50.0" />
                             </VBox.margin>
                         </TableView>
-                        <Button mnemonicParsing="false" prefHeight="59.0" prefWidth="164.0" style="-fx-border-style: 10;" styleClass="btnTambahTugas" stylesheets="@../css/styles.css" text="Tambah Tugas Baru">
+                        <Button fx:id="btnTambahTugas" mnemonicParsing="false" onAction="#actionTambahTugas" prefHeight="59.0" prefWidth="164.0" style="-fx-border-style: 10;" styleClass="btnTambahTugas" stylesheets="@../css/styles.css" text="Tambah Tugas Baru">
                             <VBox.margin>
                                 <Insets left="450.0" />
                             </VBox.margin>
