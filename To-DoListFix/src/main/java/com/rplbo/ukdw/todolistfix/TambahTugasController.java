@@ -17,7 +17,7 @@ public class TambahTugasController {
     private TextField txtJudulTugas;
 
     @FXML
-    private TextField txtDeskripsiTugas;
+    private TextArea txtDeskripsiTugas;
 
     @FXML
     private ComboBox<String> cmbKategoriTugas;
@@ -64,8 +64,22 @@ public class TambahTugasController {
 
     @FXML
     private void handleBatal(ActionEvent event) {
-        clearForm();
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle("Konfirmasi");
+        confirmAlert.setHeaderText("Apakah anda yakin untuk membatalkan?");
+        confirmAlert.setContentText("Semua yang anda isi akan terhapus");
+
+        ButtonType yesButton = new ButtonType("Ya", ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancelButton = new ButtonType("Batal", ButtonBar.ButtonData.CANCEL_CLOSE);
+        confirmAlert.getButtonTypes().setAll(yesButton, cancelButton);
+
+        confirmAlert.showAndWait().ifPresent(response -> {
+            if (response == yesButton) {
+                clearForm();
+            }
+        });
     }
+
 
     private void clearForm() {
         txtJudulTugas.clear();
