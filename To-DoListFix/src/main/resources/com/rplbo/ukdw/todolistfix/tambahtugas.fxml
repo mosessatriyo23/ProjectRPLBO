@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -196,15 +197,7 @@
                                 <Insets />
                             </opaqueInsets>
                         </TextField>
-                        <TextField fx:id="txtDeskripsiTugas" alignment="TOP_LEFT" prefHeight="129.0" prefWidth="415.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                            <opaqueInsets>
-                                <Insets />
-                            </opaqueInsets>
-                            <GridPane.margin>
-                                <Insets left="50.0" right="100.0" />
-                            </GridPane.margin>
-                        </TextField>
-                        <Button fx:id="btnSimpan" mnemonicParsing="false" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: #ffaf00; -fx-font-weight: 950;" text="Simpan" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                        <Button fx:id="btnSimpan" mnemonicParsing="false" onAction="#handleSimpan" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: #ffaf00;" text="Simpan" GridPane.columnIndex="2" GridPane.rowIndex="4">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>
@@ -220,7 +213,7 @@
                                 <Font name="System Bold" size="20.0" />
                             </font>
                         </Label>
-                        <Button fx:id="btnBatal" mnemonicParsing="false" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: lightgrey;" text="Batal" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                        <Button fx:id="btnBatal" mnemonicParsing="false" onAction="#handleBatal" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: lightgrey;" text="Batal" GridPane.columnIndex="2" GridPane.rowIndex="4">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>
@@ -264,6 +257,11 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </CheckBox>
+                  <TextArea fx:id="txtDeskripsiTugas" prefHeight="129.0" prefWidth="415.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="50.0" right="100.0" />
+                     </GridPane.margin>
+                  </TextArea>
                     </children>
                 </GridPane>
             </children>
