@@ -58,7 +58,6 @@ public class TambahTugasController {
         System.out.println("Kategori: " + kategori);
         System.out.println("Prioritas: " + prioritas);
 
-        // Reset form atau tutup window, sesuai kebutuhan
         clearForm();
     }
 

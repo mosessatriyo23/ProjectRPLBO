@@ -10,43 +10,41 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class LoginController {
-    @FXML
-    private TextField usernameField;
+    private static final String CORRECT_USERNAME = "admin";
+    private static final String CORRECT_PASSWORD = "admin";
+
+    @FXML private TextField txtUsername;
+    @FXML private PasswordField txtPassword;
 
     @FXML
-    private PasswordField passwordField;
-
-    @FXML
-    private Button loginButton;
-
-    @FXML
-    private Label registerLabel;
-
-    @FXML
-    public void initialize() {
-
-        registerLabel.setOnMouseClicked(event -> navigateToRegister());
-    }
-
-    private void navigateToRegister() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/id/ac/ukdw/www/rplbo/terkecil/login_page/Register.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) registerLabel.getScene().getWindow();
-            stage.setScene(new Scene(root));
-        } catch (Exception e) {
-            showAlert(AlertType.ERROR, "Error", "Could not navigate to register page: " + e.getMessage());
+    protected void onKeyPressEvent(KeyEvent event) throws IOException {
+        if( event.getCode() == KeyCode.ENTER ) {
+            btnLoginClick();
         }
     }
-
-    private void showAlert(AlertType type, String title, String content) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
+    @FXML
+    protected void btnLoginClick() throws IOException {
+        Alert alert;
+        if (txtUsername.getText().equals(CORRECT_USERNAME) && txtPassword.getText().equals(CORRECT_PASSWORD)) {
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Information");
+            alert.setContentText("Login success!!");
+            alert.showAndWait();
+            ToDoListApplication.setRoot("todolist", "",true);
+        } else {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error");
+            alert.setContentText("Login failed!! Please check again.");
+            alert.showAndWait();
+            txtUsername.requestFocus();
+        }
     }
 }
+
