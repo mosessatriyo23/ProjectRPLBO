@@ -1,24 +1,18 @@
-package com.rplbo.ukdw.todolistfix;
+package com.rplbo.ukdw.todolistfix.controller;
 
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import javafx.scene.Node;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.Clock;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
