@@ -94,7 +94,7 @@
             </Label>
           </children>
         </HBox>
-        <HBox fx:id="btnSemuaTugas" alignment="CENTER" prefHeight="35.0" prefWidth="150.0" styleClass="mouse-moved" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css">
+        <HBox fx:id="btnSemuaTugas" alignment="CENTER" onMouseClicked="#handleSemuaTugasClick" prefHeight="35.0" prefWidth="150.0" styleClass="mouse-moved" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css">
           <children>
             <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
               <image>

@@ -1,5 +1,6 @@
 package com.rplbo.ukdw.todolistfix.controller;
 
+import com.rplbo.ukdw.todolistfix.ToDoListApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -35,12 +36,11 @@ public class SemuaTugasController{
 
     @FXML
     public void actionTambahTugas(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader((getClass().getResource("/com/rplbo/ukdw/todolistfix/tambahtugas.fxml")));
-        Parent root = loader.load();
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        FXMLLoader fxmlLoader = new FXMLLoader(ToDoListApplication.class.getResource("tambahtugas.fxml"));
+        Parent root = fxmlLoader.load();
+        Stage currentStage = (Stage) btnTambahTugas.getScene().getWindow();
+        currentStage.setScene(new Scene(root));
+        currentStage.show();
     }
 
 }

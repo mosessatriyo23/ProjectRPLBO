@@ -57,4 +57,7 @@ public class UserDAOManager implements UserDAO {
             return false;
         }
     }
+
+    @Override
+    public boolean AddNewTask
 }

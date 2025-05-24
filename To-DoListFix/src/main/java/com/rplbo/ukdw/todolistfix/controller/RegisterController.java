@@ -78,9 +78,9 @@ public class RegisterController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(ToDoListApplication.class.getResource("login.fxml"));
             Parent root = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
+            Stage currentStage = (Stage) loginLabel.getScene().getWindow();
+            currentStage.setScene(new Scene(root));
+            currentStage.show();
         } catch (Exception e) {
             showAlert(AlertType.ERROR, "Error", "Could not navigate to login page: " + e.getMessage());
         }

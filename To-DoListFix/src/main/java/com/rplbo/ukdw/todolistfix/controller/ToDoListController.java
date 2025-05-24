@@ -1,7 +1,10 @@
 package com.rplbo.ukdw.todolistfix.controller;
 
+import com.rplbo.ukdw.todolistfix.ToDoListApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXMLLoader;
@@ -70,7 +73,11 @@ public class ToDoListController implements Initializable {
 
     @FXML
     private void handleSemuaTugasClick(MouseEvent event) throws IOException {
-        loadScene("/com/rplbo/ukdw/todolistfix/semuatugas.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(ToDoListApplication.class.getResource("semuatugas.fxml"));
+        Parent root = fxmlLoader.load();
+        Stage currentStage = (Stage) btnHome.getScene().getWindow();
+        currentStage.setScene(new Scene(root));
+        currentStage.show();
     }
 
     @FXML
