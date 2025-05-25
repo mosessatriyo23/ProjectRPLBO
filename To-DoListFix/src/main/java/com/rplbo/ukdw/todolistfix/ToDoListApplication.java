@@ -17,7 +17,7 @@ public class ToDoListApplication extends Application {
     public void start(Stage stage) throws IOException {
         primaryStage = stage;
         primaryStage.setTitle("Title");
-        primaryStage.setScene(new Scene(loadFXML("login")));
+        primaryStage.setScene(new Scene(loadFXML("todolist")));
         primaryStage.show();
     }
 
