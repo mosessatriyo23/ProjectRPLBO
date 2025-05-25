@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +25,8 @@ import java.util.ResourceBundle;
 
 public class ToDoListController implements Initializable {
 
+    @FXML
+    private Label lblTglBlnThn;
 
     @FXML private Label lblJmMntDtk;
 
@@ -51,8 +54,6 @@ public class ToDoListController implements Initializable {
         clock.setDaemon(true);
         clock.start();
     }
-
-    @FXML private Label lblTglBlnThn;
 
     @FXML
     private HBox btnHome;
@@ -92,5 +93,43 @@ public class ToDoListController implements Initializable {
     @FXML
     private void handleLogoutClick(MouseEvent event) throws IOException {
         loadScene("/com/rplbo/ukdw/todolistfix/login.fxml");
+    }
+
+    @FXML private HBox btnSemuaTugas, btnKategori, btnPrioritas;
+
+    private void setActiveItem(HBox selectedItem) {
+        btnHome.getStyleClass().remove("active");
+        btnSemuaTugas.getStyleClass().remove("active");
+        btnKategori.getStyleClass().remove("active");
+        btnPrioritas.getStyleClass().remove("active");
+
+
+        if (!selectedItem.getStyleClass().contains("active")) {
+            selectedItem.getStyleClass().add("active");
+        }
+    }
+
+    @FXML
+    private void handleHomeClick() {
+        setActiveItem(btnHome);
+        System.out.println("Home diklik");
+    }
+
+    @FXML
+    private void handleSemuaTugasClick() {
+        setActiveItem(btnSemuaTugas);
+        System.out.println("Semua Tugas diklik");
+    }
+
+    @FXML
+    private void handleKategoriClick() {
+        setActiveItem(btnKategori);
+        System.out.println("Kategori diklik");
+    }
+
+    @FXML
+    private void handlePrioritasClick() {
+        setActiveItem(btnPrioritas);
+        System.out.println("Kategori diklik");
     }
 }

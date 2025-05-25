@@ -12,7 +12,7 @@
 }
 
 .selected {
-    -fx-background-color: linear-gradient(to right, #F28B3D 5px, rgba(242,139,61,0.15) 5px);
+    -fx-background-color: linear-gradient(to right, #fecb4b 5px, rgba(242,139,61,0.15) 5px);
 }
 
 .mouse-moved:hover {
@@ -27,4 +27,41 @@
 .container-orange{
     -fx-background-color: #FFF494;
     -fx-background-radius: 15;
+}
+
+.sidebar-item {
+    -fx-padding: 10;
+    -fx-spacing: 10;
+    -fx-alignment: center-left;
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s ease;
+}
+
+.sidebar-icon, .sidebar-label {
+    -fx-transition: all 0.3s ease;
+}
+
+.sidebar-item:hover {
+    -fx-background-color: #ffdd88;
+}
+
+.sidebar-item:hover ImageView,
+.sidebar-item:hover Label {
+    -fx-scale-x: 1.12;
+    -fx-scale-y: 1.12;
+    -fx-transition: all 0.3s ease;
+}
+
+.sidebar-item.active {
+    -fx-background-color: #fecb4b;
+    -fx-text-fill: white;
+}
+
+.sidebar-item.active Label {
+    -fx-text-fill: white;
+}
+
+.sidebar-item.active ImageView {
+    -fx-effect: dropshadow(gaussian, white, 5, 0, 0, 0);
 }
