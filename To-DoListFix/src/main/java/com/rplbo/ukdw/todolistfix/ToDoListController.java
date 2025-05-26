@@ -81,8 +81,18 @@ public class ToDoListController implements Initializable {
     }
 
     @FXML
+    private void handleTambahTugasClick(MouseEvent event) throws IOException {
+        loadScene("/com/rplbo/ukdw/todolistfix/tambahtugas.fxml");
+    }
+
+    @FXML
     private void handleKategoriClick(MouseEvent event) throws IOException {
         loadScene("/com/rplbo/ukdw/todolistfix/kategori.fxml");
+    }
+
+    @FXML
+    private void handleTambahKategoriClick(MouseEvent event) throws IOException {
+        loadScene("/com/rplbo/ukdw/todolistfix/formkategori.fxml");
     }
 
     @FXML

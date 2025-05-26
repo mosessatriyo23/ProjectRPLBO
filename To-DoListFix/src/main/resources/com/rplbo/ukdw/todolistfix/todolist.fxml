@@ -187,7 +187,7 @@
                           </font>
                         </Label>
                         <Label fx:id="lblJmlSemuaTugas" text="(05)" />
-                        <ImageView fx:id="btnAddSemuaTugas" fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="btnAddSemuaTugas" fitHeight="15.0" fitWidth="15.0" onMouseClicked="#handleTambahTugasClick" pickOnBounds="true" preserveRatio="true">
                           <HBox.margin>
                             <Insets left="50.0" />
                           </HBox.margin>
@@ -220,7 +220,7 @@
                           </HBox.margin>
                         </Label>
                         <Label fx:id="lblJmlKategori" text="(02)" />
-                        <ImageView fx:id="btnAddKategori" fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="btnAddKategori" fitHeight="15.0" fitWidth="15.0" onMouseClicked="#handleTambahKategoriClick" pickOnBounds="true" preserveRatio="true">
                           <HBox.margin>
                             <Insets left="80.0" />
                           </HBox.margin>
@@ -261,14 +261,6 @@
                           </HBox.margin>
                         </Label>
                         <Label fx:id="lblJmlPrioritas" text="(01)" />
-                        <ImageView fx:id="btnAddPrioritas" fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                          <HBox.margin>
-                            <Insets left="80.0" />
-                          </HBox.margin>
-                          <image>
-                            <Image url="@../images/add.png" />
-                          </image>
-                        </ImageView>
                       </children>
                     </HBox>
                   </children>
