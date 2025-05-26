@@ -19,7 +19,7 @@ public class ToDoListApplication extends Application {
         DatabaseUtil.initializeDatabase();
         primaryStage = stage;
         primaryStage.setTitle("Title");
-        primaryStage.setScene(new Scene(loadFXML("login")));
+        primaryStage.setScene(new Scene(loadFXML("todolist")));
         primaryStage.show();
     }
 
