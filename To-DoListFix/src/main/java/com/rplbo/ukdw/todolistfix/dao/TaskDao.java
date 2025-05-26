@@ -8,5 +8,5 @@ public interface TaskDao {
     boolean addTask(Task task);
     boolean deleteTask(int taskId);
     boolean updateTask(Task task);
-    List<Task> getTaskByUser(int idUser) throws SQLException;
+    List<Task>getTaskByUser(int idUser) throws SQLException;
 }
