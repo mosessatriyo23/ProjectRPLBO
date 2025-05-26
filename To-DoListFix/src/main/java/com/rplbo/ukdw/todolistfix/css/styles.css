@@ -27,3 +27,76 @@
     -fx-background-color: #FFF494;
     -fx-background-radius: 15;
 }
+
+.white-backgorund{
+    -fx-background-color: #fff;
+}
+
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.round-layout{
+    -fx-background-color: #D7D7D7;
+    -fx-background-radius: 20;
+}
+
+.selected {
+    -fx-padding: 10;
+    -fx-spacing: 10;
+    -fx-alignment: center-left;
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s ease;
+    -fx-background-color: linear-gradient(to right, #fecb4b 5px, rgba(242,139,61,0.15) 5px);
+}
+
+.mouse-moved:hover {
+    -fx-background-color: linear-gradient(to right, rgba(242,139,61,0.5) 5px, #E4E4E4 5px);
+}
+
+.container{
+    -fx-background-color: #fff;
+    -fx-background-radius: 15;
+}
+
+.container-orange{
+    -fx-background-color: #FFF494;
+    -fx-background-radius: 15;
+}
+
+.sidebar-item {
+    -fx-padding: 10;
+    -fx-spacing: 10;
+    -fx-alignment: center-left;
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s ease;
+}
+
+.sidebar-icon, .sidebar-label {
+    -fx-transition: all 0.3s ease;
+}
+
+.sidebar-item:hover {
+    -fx-background-color: #ffdd88;
+}
+
+.sidebar-item:hover ImageView,
+.sidebar-item:hover Label {
+    -fx-scale-x: 1.12;
+    -fx-scale-y: 1.12;
+    -fx-transition: all 0.3s ease;
+}
+
+.sidebar-item.active {
+    -fx-background-color: #fecb4b;
+    -fx-text-fill: white;
+}
+
+.sidebar-item.active Label {
+    -fx-text-fill: white;
+}
+
+.sidebar-item.active ImageView {
+    -fx-effect: dropshadow(gaussian, white, 5, 0, 0, 0);
+}
