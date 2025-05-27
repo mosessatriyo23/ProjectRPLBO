@@ -1,4 +1,4 @@
-package com.rplbo.ukdw.todolistfix;
+package com.rplbo.ukdw.todolistfix.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;

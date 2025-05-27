@@ -1,5 +1,4 @@
 package com.rplbo.ukdw.todolistfix.dao;
-
 import com.rplbo.ukdw.todolistfix.dao.UserDAO;
 import com.rplbo.ukdw.todolistfix.model.User;
 import com.rplbo.ukdw.todolistfix.util.DatabaseUtil;

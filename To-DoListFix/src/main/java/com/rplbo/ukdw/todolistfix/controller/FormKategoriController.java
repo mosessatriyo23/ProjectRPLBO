@@ -1,7 +1,6 @@
-package com.rplbo.ukdw.todolistfix;
+package com.rplbo.ukdw.todolistfix.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -15,10 +14,10 @@ public class FormKategoriController {
     @FXML
     private TextField txtTugas;
 
-    private com.rplbo.ukdw.todolistfix.KategoriController parentController;
+    private KategoriController parentController;
     private com.rplbo.ukdw.todolistfix.Kategori kategoriEdit;
 
-    public void setParentController(com.rplbo.ukdw.todolistfix.KategoriController controller) {
+    public void setParentController(KategoriController controller) {
         this.parentController = controller;
     }
 
