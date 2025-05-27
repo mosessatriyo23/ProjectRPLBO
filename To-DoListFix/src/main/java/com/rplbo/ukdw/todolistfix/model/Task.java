@@ -1,5 +1,4 @@
 package com.rplbo.ukdw.todolistfix.model;
-
 public class Task {
     private int id;
     private String judul;

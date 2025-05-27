@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
 import java.io.IOException;
@@ -119,17 +120,20 @@ public class KategoriController implements Initializable {
 
                 Stage stage = new Stage();
                 stage.setTitle("Edit Kategori");
+                stage.initStyle(StageStyle.UNDECORATED);
                 stage.setScene(new Scene(root));
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
 
-                tabell.refresh();
+                if (controller.isSaved()) {
+                    tabell.refresh();
 
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("HORE");
-                alert.setHeaderText(null);
-                alert.setContentText("Kategori sudah berhasil di edit!!");
-                alert.showAndWait();
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("HORE");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Kategori sudah berhasil di edit!!");
+                    alert.showAndWait();
+                }
 
             } catch (IOException e) {
                 e.printStackTrace();
