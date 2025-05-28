@@ -22,16 +22,20 @@
                 <Insets />
             </BorderPane.margin>
             <children>
-                <Label alignment="CENTER" prefHeight="50.0" prefWidth="114.0" text="TDL">
-                    <font>
-                        <Font name="Bebas Neue Regular" size="35.0" />
-                    </font>
-                </Label>
-                <Separator maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="50.0" prefWidth="4.0" />
-                <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="30.0" prefWidth="261.0" styleClass="round-layout" stylesheets="@../css/styles.css">
+                <Pane prefHeight="50.0" prefWidth="113.0">
                     <children>
-                        <TextField prefHeight="26.0" prefWidth="215.0" promptText="Cari" styleClass="transparent" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css" />
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="31.0" fitWidth="110.0" layoutX="16.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/logoPinnacle(2).png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </Pane>
+                <Separator maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="50.0" prefWidth="4.0" />
+                <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="30.0" prefWidth="211.0" styleClass="round-layout" stylesheets="@../css/styles.css">
+                    <children>
+                        <TextField fx:id="searchbox" prefHeight="26.0" prefWidth="178.0" promptText="Cari" styleClass="transparent" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css" />
+                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/search.png" />
                             </image>
@@ -40,9 +44,14 @@
                 </HBox>
                 <Pane prefHeight="50.0" prefWidth="118.0" HBox.hgrow="ALWAYS">
                     <children>
-                        <Label layoutY="10.0" prefHeight="30.0" prefWidth="75.0" text="16 : 15 : 00">
+                        <Label fx:id="lblJmMntDtk" layoutY="11.0" prefHeight="30.0" prefWidth="61.0" styleClass="transparent" stylesheets="@../css/styles.css" text="16 : 15 : 00" textFill="#8c8c8c">
                             <font>
-                                <Font size="15.0" />
+                                <Font name="Bebas Neue Regular" size="15.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="lblTglBlnThn" layoutX="61.0" layoutY="15.0" text="8 May 2025" textFill="#8c8c8c">
+                            <font>
+                                <Font name="Bebas Neue Regular" size="15.0" />
                             </font>
                         </Label>
                     </children>
@@ -74,31 +83,14 @@
             </BorderPane.margin>
             <children>
                 <Pane prefHeight="117.0" prefWidth="134.0" />
-                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="150.0" styleClass="mouse-moved" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css">
+                <HBox fx:id="btnHome" alignment="CENTER" onMouseClicked="#handleHomeClick" prefHeight="35.0" prefWidth="150.0" styleClass="sidebar-item" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css">
                     <children>
-                        <ImageView fitHeight="20.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="lgHome" fitHeight="20.0" fitWidth="15.0" onMouseClicked="#handleHomeClick" pickOnBounds="true" preserveRatio="true" styleClass="sidebar-icon">
                             <image>
                                 <Image url="@../images/home.png" />
                             </image>
                         </ImageView>
-                        <Label prefHeight="35.0" prefWidth="75.0" text="Home">
-                            <HBox.margin>
-                                <Insets left="5.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font name="Arial Bold" size="12.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </HBox>
-                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="150.0" styleClass="selected" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css">
-                    <children>
-                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/to-do-list.png" />
-                            </image>
-                        </ImageView>
-                        <Label prefHeight="35.0" prefWidth="75.0" text="Semua Tugas">
+                        <Label fx:id="lblHome" onMouseClicked="#handleHomeClick" prefHeight="35.0" prefWidth="75.0" styleClass="sidebar-label" stylesheets="@../css/styles.css" text="Home">
                             <HBox.margin>
                                 <Insets left="5.0" />
                             </HBox.margin>
@@ -108,28 +100,45 @@
                         </Label>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="150.0" styleClass="mouse-moved" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css">
+                <HBox fx:id="btnSemuaTugas" alignment="CENTER" onMouseClicked="#handleSemuaTugasClick" prefHeight="35.0" prefWidth="150.0" styleClass="selected" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css">
                     <children>
-                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="lgSemuaTugas" fitHeight="15.0" fitWidth="15.0" onMouseClicked="#handleSemuaTugasClick" pickOnBounds="true" preserveRatio="true" styleClass="sidebar-icon">
+                            <image>
+                                <Image url="@../images/to-do-list.png" />
+                            </image>
+                        </ImageView>
+                        <Label fx:id="lblSemuaTugas1" onMouseClicked="#handleSemuaTugasClick" prefHeight="35.0" prefWidth="75.0" styleClass="sidebar-label" stylesheets="@../css/styles.css" text="Semua Tugas">
+                            <HBox.margin>
+                                <Insets left="5.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font name="Arial" size="12.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox fx:id="btnKategori" alignment="CENTER" onMouseClicked="#handleKategoriClick" prefHeight="35.0" prefWidth="150.0" styleClass="sidebar-item" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css">
+                    <children>
+                        <ImageView fx:id="lgKategori" fitHeight="15.0" fitWidth="15.0" onMouseClicked="#handleKategoriClick" pickOnBounds="true" preserveRatio="true" styleClass="sidebar-icon">
                             <image>
                                 <Image url="@../images/application.png" />
                             </image>
                         </ImageView>
-                        <Label prefHeight="35.0" prefWidth="75.0" text="Kategori">
+                        <Label fx:id="lblKategori1" onMouseClicked="#handleKategoriClick" prefHeight="35.0" prefWidth="75.0" styleClass="sidebar-label" stylesheets="@../css/styles.css" text="Kategori">
                             <HBox.margin>
                                 <Insets left="5.0" />
                             </HBox.margin>
                         </Label>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="150.0" styleClass="mouse-moved" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css">
+                <HBox fx:id="btnPrioritas" alignment="CENTER" onMouseClicked="#handlePrioritasClick" prefHeight="35.0" prefWidth="150.0" styleClass="sidebar-item" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css">
                     <children>
-                        <ImageView fitHeight="35.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="lgPrioritas" fitHeight="35.0" fitWidth="15.0" onMouseClicked="#handlePrioritasClick" pickOnBounds="true" preserveRatio="true" styleClass="sidebar-icon">
                             <image>
                                 <Image url="@../images/star.png" />
                             </image>
                         </ImageView>
-                        <Label prefHeight="35.0" prefWidth="75.0" text="Prioritas">
+                        <Label fx:id="lblPrioritas1" onMouseClicked="#handlePrioritasClick" prefHeight="35.0" prefWidth="75.0" styleClass="sidebar-label" stylesheets="@../css/styles.css" text="Prioritas">
                             <HBox.margin>
                                 <Insets left="5.0" />
                             </HBox.margin>
@@ -137,14 +146,14 @@
                     </children>
                 </HBox>
                 <Pane prefHeight="135.0" prefWidth="135.0" />
-                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="150.0" styleClass="mouse-moved" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css">
+                <HBox fx:id="btnLogOut" alignment="CENTER" onMouseClicked="#handleLogoutClick" prefHeight="35.0" prefWidth="150.0" styleClass="sidebar-item" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css">
                     <children>
-                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="lgLogOut" fitHeight="15.0" fitWidth="15.0" onMouseClicked="#handleLogoutClick" pickOnBounds="true" preserveRatio="true" styleClass="sidebar-icon">
                             <image>
                                 <Image url="@../images/logout.png" />
                             </image>
                         </ImageView>
-                        <Label prefHeight="35.0" prefWidth="70.0" text="Log Out">
+                        <Label fx:id="lblLogOut" onMouseClicked="#handleLogoutClick" prefHeight="35.0" prefWidth="70.0" stylesheets="@../css/styles.css" text="Log Out">
                             <HBox.margin>
                                 <Insets left="5.0" />
                             </HBox.margin>
