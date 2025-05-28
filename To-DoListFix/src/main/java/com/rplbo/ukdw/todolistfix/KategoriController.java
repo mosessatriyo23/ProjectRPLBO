@@ -9,6 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -35,6 +37,9 @@ public class KategoriController implements Initializable {
 
     @FXML
     private TableColumn<Kategori, String> daftarTugas;
+
+    @FXML
+    private HBox btnHome;
 
     private ObservableList<Kategori> daftarKategori = FXCollections.observableArrayList();
 
@@ -70,6 +75,53 @@ public class KategoriController implements Initializable {
         bukaFormEdit(null);
     }
 
+    @FXML
+    private void handleHomeClick(MouseEvent event) throws IOException {
+        loadScene("/com/rplbo/ukdw/todolistfix/todolist.fxml");
+    }
+
+    private void loadScene(String fxmlPath) throws IOException {
+        URL fxmlUrl = getClass().getResource(fxmlPath);
+        if (fxmlUrl == null) {
+            System.err.println("FXML file not found: " + fxmlPath);
+            return;
+        }
+        Parent root = FXMLLoader.load(fxmlUrl);
+        Stage stage = (Stage) btnHome.getScene().getWindow();
+        stage.setScene(new Scene(root));
+    }
+
+    @FXML
+    private void handleSemuaTugasClick(MouseEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(ToDoListApplication.class.getResource("semuatugas.fxml"));
+        Parent root = fxmlLoader.load();
+        Stage currentStage = (Stage) btnHome.getScene().getWindow();
+        currentStage.setScene(new Scene(root));
+        currentStage.show();
+    }
+
+    @FXML
+    private void handleKategoriClick(MouseEvent event) throws IOException {
+        loadScene("/com/rplbo/ukdw/todolistfix/kategori.fxml");
+    }
+
+    @FXML
+    private void handlePrioritasClick(MouseEvent event) throws IOException {
+        loadScene("/com/rplbo/ukdw/todolistfix/prioritas.fxml");
+    }
+
+    @FXML
+    private void handleLogoutClick(MouseEvent event) throws IOException {
+        loadScene("/com/rplbo/ukdw/todolistfix/login.fxml");
+    }
+
+    public void handleTambahTugasClick(MouseEvent mouseEvent) throws IOException {
+        loadScene("/com/rplbo/ukdw/todolistfix/tambahtugas.fxml");
+    }
+
+    public void handleTambahKategoriClick(MouseEvent mouseEvent) throws IOException {
+        loadScene("/com/rplbo/ukdw/todolistfix/formkategori.fxml");
+    }
 
     public void tambahKategori(Kategori kategori) {
         daftarKategori.add(kategori);
