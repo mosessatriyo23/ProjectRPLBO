@@ -99,7 +99,7 @@ public class TambahTugasController {
     @FXML
     private void handleKembali(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/rplbo/ukdw/todolistfix/view/semuatugas.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/rplbo/ukdw/todolistfix/semuatugas.fxml"));   
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Daftar Semua Tugas");
@@ -109,6 +109,7 @@ public class TambahTugasController {
             showAlert("Gagal Kembali", "Tidak dapat memuat halaman semuatugas.fxml");
         }
     }
+
 
     private void clearForm() {
         txtJudulTugas.clear();
