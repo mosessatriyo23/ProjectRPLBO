@@ -1,5 +1,4 @@
 package com.rplbo.ukdw.todolistfix;
-
 import com.rplbo.ukdw.todolistfix.util.DatabaseUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +17,7 @@ public class ToDoListApplication extends Application {
     public void start(Stage stage) throws IOException {
         DatabaseUtil.initializeDatabase();
         primaryStage = stage;
-        primaryStage.setTitle("Title");
+        primaryStage.setTitle("Pinnacle");
         primaryStage.setScene(new Scene(loadFXML("login")));
         primaryStage.show();
     }
