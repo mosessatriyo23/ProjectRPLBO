@@ -1,5 +1,6 @@
-package com.rplbo.ukdw.todolistfix;
+package com.rplbo.ukdw.todolistfix.controller;
 
+import com.rplbo.ukdw.todolistfix.ToDoListApplication;
 import com.rplbo.ukdw.todolistfix.dao.TaskDAOManager;
 import com.rplbo.ukdw.todolistfix.dao.TaskDao;
 import javafx.fxml.FXML;

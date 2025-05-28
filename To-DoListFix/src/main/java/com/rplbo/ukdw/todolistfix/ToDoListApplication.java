@@ -1,4 +1,5 @@
 package com.rplbo.ukdw.todolistfix;
+
 import com.rplbo.ukdw.todolistfix.util.DatabaseUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
