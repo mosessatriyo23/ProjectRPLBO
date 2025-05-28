@@ -14,12 +14,15 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
 
 public class LoginController {
+
     @FXML
     private TextField usernameField;
     @FXML
@@ -51,6 +54,17 @@ public class LoginController {
     }
 
     @FXML
+    private void onKeyPressEvent(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            try {
+                handleLogin();
+            } catch (IOException e) {
+                showAlert(Alert.AlertType.ERROR, "Error", "Login failed: " + e.getMessage());
+            }
+        }
+    }
+
+    @FXML
     private void handleLogin() throws IOException {
         String username = usernameField.getText();
         String password = passwordField.getText();
@@ -62,8 +76,7 @@ public class LoginController {
         String rawPassword = passwordField.getText();
         User user = userDao.getUserByUsername(username); // Fetch user from DB
         if (user != null && BCrypt.checkpw(rawPassword, user.getPassword())) {
-            // Login successful
-            FXMLLoader fxmlLoader = new FXMLLoader(ToDoListApplication.class.getResource("todolist.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(ToDoListApplication.class.getResource("/com/rplbo/ukdw/todolistfix/todolist.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) loginButton.getScene().getWindow();
             stage.setScene(new Scene(root));

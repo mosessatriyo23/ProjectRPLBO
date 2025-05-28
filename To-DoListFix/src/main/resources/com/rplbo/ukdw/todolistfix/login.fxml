@@ -6,14 +6,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane onKeyPressed="#onKeyPressEvent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="393.0" prefWidth="460.0" styleClass="root" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rplbo.ukdw.todolistfix.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="393.0" prefWidth="460.0" styleClass="root" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rplbo.ukdw.todolistfix.controller.LoginController">
     <children>
         <ImageView fitHeight="453.0" fitWidth="750.0" layoutX="-169.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../images/img1.jpg" />
             </image>
         </ImageView>
-
         <!-- Right side with login form -->
         <VBox alignment="CENTER" prefHeight="393.0" prefWidth="460.0" spacing="20.0">
             <children>
@@ -30,21 +29,20 @@
                                 <Font name="Arial" size="14.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="txtUsername" layoutX="13.0" layoutY="100.0" prefHeight="35.0" prefWidth="274.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #e0e0e0; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);" />
+                        <TextField fx:id="usernameField" layoutX="13.0" layoutY="100.0" prefHeight="35.0" prefWidth="274.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #e0e0e0; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);" />
 
                         <Label layoutX="13.0" layoutY="151.0" style="-fx-font-weight: bold;" text="Password">
                             <font>
                                 <Font name="Arial" size="14.0" />
                             </font>
                         </Label>
-                        <PasswordField fx:id="txtPassword" layoutX="13.0" layoutY="170.0" prefHeight="35.0" prefWidth="274.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #e0e0e0; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);" />
-
-                        <Button fx:id="loginButton" layoutX="13.0" layoutY="230.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="274.0" style="-fx-background-color: #F28B3D; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 0);" text="Login">
+                        <PasswordField fx:id="passwordField" layoutX="13.0" layoutY="170.0" onAction="#handleLogin" prefHeight="35.0" prefWidth="274.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #e0e0e0; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);" />
+                        <Label fx:id="errorLabel" layoutX="13.0" layoutY="280.0" text="" textFill="red" />
+                        <Button fx:id="loginButton" layoutX="13.0" layoutY="230.0" mnemonicParsing="false" onKeyPressed="#onKeyPressEvent" prefHeight="40.0" prefWidth="274.0" style="-fx-background-color: #F28B3D; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 0);" text="Login">
                             <font>
                                 <Font name="Arial Bold" size="14.0" />
                             </font>
                         </Button>
-
                         <Label fx:id="registerLabel" layoutX="69.0" layoutY="289.0" style="-fx-text-fill: #F28B3D; -fx-cursor: hand;" text="Belum punya akun? Daftar">
                             <font>
                                 <Font name="Arial" size="13.0" />
