@@ -1,4 +1,4 @@
-package com.rplbo.ukdw.todolistfix;
+package com.rplbo.ukdw.todolistfix.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -36,7 +36,9 @@ public class TambahTugasController {
         // Inisialisasi kategori jika perlu
         cmbKategoriTugas.getItems().addAll("Pekerjaan", "Pribadi", "Belajar", "Lainnya");
         cmbKategoriTugas.setValue("Pekerjaan");
+
     }
+
 
     @FXML
     private void handleSimpan(ActionEvent event) {
@@ -80,6 +82,7 @@ public class TambahTugasController {
     }
 
 
+
     private void clearForm() {
         txtJudulTugas.clear();
         txtDeskripsiTugas.clear();
@@ -94,4 +97,6 @@ public class TambahTugasController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+
 }

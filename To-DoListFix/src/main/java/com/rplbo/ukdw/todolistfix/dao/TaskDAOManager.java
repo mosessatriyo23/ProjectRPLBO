@@ -44,8 +44,8 @@ public class TaskDAOManager implements TaskDao {
         }
     }
 
-    @Override
-    public List<Task> getTaskByUser(int idUser) throws SQLException {
+   @Override
+   public List<Task> getTaskByUser(int idUser) throws SQLException {
         List<Task> tasks = new ArrayList<>();
         String sql = "SELECT judul, kategori, deskripsi, prioritas FROM task WHERE idUser = ?";
 
@@ -67,7 +67,7 @@ public class TaskDAOManager implements TaskDao {
         }
         return tasks;
     }
-    public boolean updateTask(Task task) {
+   public boolean updateTask(Task task) {
         String sql = "UPDATE task SET judul = ?, kategori = ?, deskrispsi = ?, prioritas = ? WHERE id = ? AND idUser = ?";
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)){
@@ -84,6 +84,6 @@ public class TaskDAOManager implements TaskDao {
             System.err.println("Update Data error: " + e.getMessage());
             return false;
         }
-    }
+   }
     // Implement other methods...
 }
