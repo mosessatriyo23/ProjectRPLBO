@@ -1,6 +1,7 @@
 package com.rplbo.ukdw.todolistfix.controller;
 
 import com.rplbo.ukdw.todolistfix.Kategori;
+import com.rplbo.ukdw.todolistfix.ToDoListApplication;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
