@@ -1,9 +1,20 @@
 package com.rplbo.ukdw.todolistfix.controller;
 
+import com.rplbo.ukdw.todolistfix.ToDoListApplication;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.event.ActionEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+import javafx.scene.Node;
+
+import java.io.IOException;
+import java.net.URL;
 
 public class TambahTugasController {
 
@@ -26,19 +37,24 @@ public class TambahTugasController {
     private CheckBox chkPrioritas;
 
     @FXML
-    private Button btnSimpan;
+    private Button btnSmp1;
 
     @FXML
     private Button btnBatal;
 
     @FXML
+    private Button btnKembali;
+
+    @FXML
+    private HBox btnHome;
+
+
+
+    @FXML
     public void initialize() {
-        // Inisialisasi kategori jika perlu
         cmbKategoriTugas.getItems().addAll("Pekerjaan", "Pribadi", "Belajar", "Lainnya");
         cmbKategoriTugas.setValue("Pekerjaan");
-
     }
-
 
     @FXML
     private void handleSimpan(ActionEvent event) {
@@ -47,13 +63,12 @@ public class TambahTugasController {
         String kategori = cmbKategoriTugas.getValue();
         boolean prioritas = chkPrioritas.isSelected();
 
-        // Validasi input
         if (judul.isEmpty() || deskripsi.isEmpty() || kategori == null) {
             showAlert("Form tidak lengkap", "Silakan lengkapi semua kolom sebelum menyimpan.");
             return;
         }
 
-        // Simpan tugas (logic penyimpanan tergantung implementasi)
+        // Simulasi simpan data
         System.out.println("Tugas Disimpan:");
         System.out.println("Judul: " + judul);
         System.out.println("Deskripsi: " + deskripsi);
@@ -81,7 +96,19 @@ public class TambahTugasController {
         });
     }
 
-
+    @FXML
+    private void handleKembali(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/com/rplbo/ukdw/todolistfix/view/semuatugas.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Daftar Semua Tugas");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Gagal Kembali", "Tidak dapat memuat halaman semuatugas.fxml");
+        }
+    }
 
     private void clearForm() {
         txtJudulTugas.clear();
@@ -97,6 +124,44 @@ public class TambahTugasController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+    @FXML
+    private void handleHomeClick(MouseEvent event) throws IOException {
+        loadScene("todolistfix/todolist.fxml");
+    }
 
+    @FXML
+    private void handleSemuaTugasClick(MouseEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(ToDoListApplication.class.getResource("semuatugas.fxml"));
+        Parent root = fxmlLoader.load();
+        Stage currentStage = (Stage) btnHome.getScene().getWindow();
+        currentStage.setScene(new Scene(root));
+        currentStage.show();
+    }
 
+    @FXML
+    private void handleKategoriClick(MouseEvent event) throws IOException {
+        loadScene("/com/rplbo/ukdw/todolistfix/kategori.fxml");
+    }
+
+    @FXML
+    private void handlePrioritasClick(MouseEvent event) throws IOException {
+        loadScene("/com/rplbo/ukdw/todolistfix/prioritas.fxml");
+    }
+
+    @FXML
+    private void handleLogoutClick(MouseEvent event) throws IOException {
+        loadScene("/com/rplbo/ukdw/todolistfix/login.fxml");
+    }
+
+    private void loadScene(String fxmlPath) throws IOException {
+        URL fxmlUrl = getClass().getResource(fxmlPath);
+        if (fxmlUrl == null) {
+            System.err.println("FXML file not found: " + fxmlPath);
+            return;
+        }
+
+        Parent root = FXMLLoader.load(fxmlUrl);
+        Stage stage = (Stage) btnHome.getScene().getWindow();
+        stage.setScene(new Scene(root));
+    }
 }
