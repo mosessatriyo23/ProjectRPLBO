@@ -1,5 +1,6 @@
-package com.rplbo.ukdw.todolistfix;
+package com.rplbo.ukdw.todolistfix.controller;
 
+import com.rplbo.ukdw.todolistfix.Kategori;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;

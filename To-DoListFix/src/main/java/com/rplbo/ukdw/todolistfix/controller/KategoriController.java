@@ -1,5 +1,6 @@
-package com.rplbo.ukdw.todolistfix;
+package com.rplbo.ukdw.todolistfix.controller;
 
+import com.rplbo.ukdw.todolistfix.Kategori;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,7 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;

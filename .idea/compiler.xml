@@ -6,8 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="To-DoListFix" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="To-DoListFix" target="23" />
+    </bytecodeTargetLevel>
   </component>
 </project>

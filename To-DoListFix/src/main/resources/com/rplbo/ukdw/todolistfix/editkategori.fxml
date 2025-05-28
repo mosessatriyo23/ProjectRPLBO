@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.rplbo.ukdw.todolistfix.EditKategoriController"
+            fx:controller="com.rplbo.ukdw.todolistfix.controller.EditKategoriController"
             prefHeight="400.0" prefWidth="600.0">
     <children>
         <VBox spacing="10" alignment="CENTER_LEFT" layoutX="30" layoutY="20">
