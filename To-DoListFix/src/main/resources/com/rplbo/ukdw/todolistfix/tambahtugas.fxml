@@ -208,7 +208,7 @@
                                 <Font name="System Bold" size="20.0" />
                             </font>
                         </Label>
-                        <Button fx:id="btnBtl1" mnemonicParsing="false" onAction="#handleBatal" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: lightgrey;" text="Batal" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                        <Button fx:id="btnHps1" mnemonicParsing="false" onAction="#handleHapus" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: lightgrey;" text="Hapus" GridPane.columnIndex="2" GridPane.rowIndex="4">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>
@@ -252,12 +252,12 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </CheckBox>
-                  <TextArea fx:id="txtDeskripsiTugas" prefHeight="129.0" prefWidth="415.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                     <GridPane.margin>
-                        <Insets left="50.0" right="100.0" />
-                     </GridPane.margin>
-                  </TextArea>
-                  <Button fx:id="btnKmb1" mnemonicParsing="false" onAction="#handleKembali" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: grey;" text="Kembali" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                    <TextArea fx:id="txtDeskripsiTugas" prefHeight="129.0" prefWidth="415.0" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <GridPane.margin>
+                            <Insets left="50.0" right="100.0" />
+                        </GridPane.margin>
+                    </TextArea>
+                        <Button fx:id="btnKmb1" mnemonicParsing="false" onAction="#handleKembali" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: grey;" text="Kembali" GridPane.columnIndex="2" GridPane.rowIndex="4">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>

@@ -40,7 +40,7 @@ public class TambahTugasController {
     private Button btnSmp1;
 
     @FXML
-    private Button btnBatal;
+    private Button btnHps1;
 
     @FXML
     private Button btnKembali;
@@ -79,10 +79,10 @@ public class TambahTugasController {
     }
 
     @FXML
-    private void handleBatal(ActionEvent event) {
+    private void handleHapus(ActionEvent event) {
         Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
         confirmAlert.setTitle("Konfirmasi");
-        confirmAlert.setHeaderText("Apakah anda yakin untuk membatalkan?");
+        confirmAlert.setHeaderText("Apakah anda yakin untuk menghapus?");
         confirmAlert.setContentText("Semua yang anda isi akan terhapus");
 
         ButtonType yesButton = new ButtonType("Ya", ButtonBar.ButtonData.OK_DONE);
