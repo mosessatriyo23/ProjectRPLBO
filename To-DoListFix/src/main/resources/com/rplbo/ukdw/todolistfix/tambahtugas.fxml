@@ -17,36 +17,13 @@
                     <children>
                         <ImageView fitHeight="31.0" fitWidth="110.0" layoutX="16.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/logoPinnacle (2).png" />
+                                <Image url="@../images/logoPinnacle(2).png" />
                             </image>
                         </ImageView>
                     </children>
                 </Pane>
                 <Separator maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="50.0" prefWidth="4.0" />
-                <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="30.0" prefWidth="211.0" styleClass="round-layout" stylesheets="@../css/styles.css">
-                    <children>
-                        <TextField fx:id="searchbox" prefHeight="26.0" prefWidth="178.0" promptText="Cari" styleClass="transparent" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css" />
-                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/search.png" />
-                            </image>
-                        </ImageView>
-                    </children>
-                </HBox>
-                <Pane prefHeight="50.0" prefWidth="118.0" HBox.hgrow="ALWAYS">
-                    <children>
-                        <Label fx:id="lblJmMntDtk" layoutY="11.0" prefHeight="30.0" prefWidth="61.0" styleClass="transparent" stylesheets="@../css/styles.css" text="16 : 15 : 00" textFill="#8c8c8c">
-                            <font>
-                                <Font name="Bebas Neue Regular" size="15.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="lblTglBlnThn" layoutX="61.0" layoutY="15.0" text="8 May 2025" textFill="#8c8c8c">
-                            <font>
-                                <Font name="Bebas Neue Regular" size="15.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </Pane>
+                <Pane prefHeight="50.0" prefWidth="118.0" HBox.hgrow="ALWAYS" />
                 <HBox alignment="CENTER" prefHeight="54.0" prefWidth="200.0">
                     <children>
                         <Label fx:id="lblname" alignment="CENTER" text="Moses Satriyo" textAlignment="CENTER">
@@ -137,62 +114,48 @@
                     </children>
                 </HBox>
                 <Pane prefHeight="135.0" prefWidth="135.0" />
-                <HBox fx:id="btnLogOut" alignment="CENTER" onMouseClicked="#handleLogoutClick" prefHeight="35.0" prefWidth="150.0" styleClass="sidebar-item" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css">
-                    <children>
-                        <ImageView fx:id="lgLogOut" fitHeight="15.0" fitWidth="15.0" onMouseClicked="#handleLogoutClick" pickOnBounds="true" preserveRatio="true" styleClass="sidebar-icon">
-                            <image>
-                                <Image url="@../images/logout.png" />
-                            </image>
-                        </ImageView>
-                        <Label fx:id="lblLogOut" onMouseClicked="#handleLogoutClick" prefHeight="35.0" prefWidth="70.0" stylesheets="@../css/styles.css" text="Log Out">
-                            <HBox.margin>
-                                <Insets left="5.0" />
-                            </HBox.margin>
-                        </Label>
-                    </children>
-                </HBox>
             </children>
         </VBox>
     </left>
     <center>
         <VBox alignment="CENTER" prefHeight="449.0">
             <children>
-                <GridPane prefHeight="449.0" prefWidth="667.0">
+                <GridPane alignment="CENTER" prefHeight="449.0" prefWidth="667.0">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="326.0" minWidth="10.0" prefWidth="196.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="470.0" minWidth="0.0" prefWidth="22.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1526.0" minWidth="10.0" prefWidth="476.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="326.0" minWidth="10.0" prefWidth="242.80001220703127" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1526.0" minWidth="10.0" prefWidth="424.3999877929687" />
                     </columnConstraints>
                     <rowConstraints>
                         <RowConstraints maxHeight="350.0" minHeight="0.0" prefHeight="67.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="963.0" minHeight="0.0" prefHeight="62.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="963.0" minHeight="0.0" prefHeight="146.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="963.0" minHeight="0.0" prefHeight="59.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="963.0" minHeight="10.0" prefHeight="57.39999999999998" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="963.0" minHeight="0.0" prefHeight="90.19999999999999" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="974.0" minHeight="0.0" prefHeight="145.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="61.0" prefWidth="317.0" style="-fx-background-color: lightyellow;" text="Tambah Tugas Baru" textAlignment="CENTER" textFill="#ffaf00" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="290.0" text="Tambah Tugas Baru" textAlignment="CENTER" textFill="#ffaf00" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.valignment="CENTER">
                             <font>
                                 <Font name="Arial Black" size="22.0" />
                             </font>
                             <GridPane.margin>
-                                <Insets bottom="50.0" right="150.0" top="50.0" />
+                                <Insets bottom="50.0" top="50.0" />
                             </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" style="-fx-background-color: lightyellow;" text="Judul Tugas" textFill="#ffaf00" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                        <Label alignment="CENTER" text="Judul Tugas :" textFill="#ffaf00" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                             <font>
                                 <Font name="System Bold" size="20.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="txtJudulTugas" prefHeight="0.0" prefWidth="227.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <TextField fx:id="txtJudulTugas" prefHeight="0.0" prefWidth="227.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                             <GridPane.margin>
-                                <Insets left="50.0" right="100.0" />
+                                <Insets left="25.0" right="100.0" />
                             </GridPane.margin>
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
                         </TextField>
-                        <Button fx:id="btnSmp1" mnemonicParsing="false" onAction="#handleSimpan" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: #ffaf00;" text="Simpan" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                        <Button fx:id="btnSmp1" mnemonicParsing="false" onAction="#handleSimpan" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: #ffaf00;" text="Simpan" GridPane.columnIndex="1" GridPane.rowIndex="5">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>
@@ -200,15 +163,15 @@
                                 <Insets />
                             </opaqueInsets>
                             <GridPane.margin>
-                                <Insets bottom="30.0" left="50.0" top="50.0" />
+                                <Insets bottom="30.0" left="25.0" top="50.0" />
                             </GridPane.margin>
                         </Button>
-                        <Label alignment="CENTER" style="-fx-background-color: lightyellow;" text="Kategori Tugas" textFill="#ffaf00" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                        <Label alignment="CENTER" text="Kategori Tugas :" textFill="#ffaf00" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                             <font>
                                 <Font name="System Bold" size="20.0" />
                             </font>
                         </Label>
-                        <Button fx:id="btnHps1" mnemonicParsing="false" onAction="#handleHapus" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: lightgrey;" text="Hapus" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                        <Button fx:id="btnBtl1" mnemonicParsing="false" onAction="#handleBatal" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: lightgrey;" text="Clear" GridPane.columnIndex="1" GridPane.rowIndex="5">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>
@@ -216,58 +179,53 @@
                                 <Insets />
                             </opaqueInsets>
                             <GridPane.margin>
-                                <Insets bottom="30.0" left="150.0" top="50.0" />
+                                <Insets bottom="30.0" left="125.0" top="50.0" />
                             </GridPane.margin>
                         </Button>
-                        <ComboBox fx:id="cmbKategoriTugas" prefHeight="14.0" prefWidth="194.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                        <ComboBox fx:id="kategoriComboBox" prefHeight="14.0" prefWidth="194.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                             <GridPane.margin>
-                                <Insets left="50.0" right="100.0" />
+                                <Insets left="25.0" right="100.0" />
                             </GridPane.margin>
                         </ComboBox>
-                        <Text fill="#ffaf00" strokeType="OUTSIDE" strokeWidth="0.0" text=":" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                            <font>
-                                <Font name="System Bold" size="20.0" />
-                            </font>
-                        </Text>
-                        <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-background-color: lightyellow;" text="Deskripsi Tugas" textFill="#ffaf00" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Deskripsi Tugas :" textFill="#ffaf00" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                             <font>
                                 <Font name="System Bold" size="20.0" />
                             </font>
                         </Label>
-                        <Text fill="#ffaf00" strokeType="OUTSIDE" strokeWidth="0.0" text=":" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <CheckBox fx:id="chkPrioritas" mnemonicParsing="false" prefHeight="20.0" prefWidth="101.0" text="Priotias" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                            <GridPane.margin>
+                                <Insets bottom="70.0" left="25.0" />
+                            </GridPane.margin>
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </CheckBox>
+                        <TextArea fx:id="txtDeskripsiTugas" prefHeight="129.0" prefWidth="317.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                            <GridPane.margin>
+                                <Insets left="25.0" right="100.0" />
+                            </GridPane.margin>
+                        </TextArea>
+                        <Button fx:id="btnKmb1" mnemonicParsing="false" onAction="#handleKembali" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: grey;" text="Kembali" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                            <GridPane.margin>
+                                <Insets bottom="30.0" left="225.0" top="50.0" />
+                            </GridPane.margin>
+                        </Button>
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Waktu Terakhir Tugas :" textFill="#ffaf00" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                             <font>
                                 <Font name="System Bold" size="20.0" />
                             </font>
-                        </Text>
-                        <Text fill="#ffaf00" strokeType="OUTSIDE" strokeWidth="0.0" text=":" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                            <font>
-                                <Font name="System Bold" size="20.0" />
-                            </font>
-                        </Text>
-                  <CheckBox fx:id="chkPrioritas" mnemonicParsing="false" prefHeight="17.0" prefWidth="75.0" text="Priotias" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                     <GridPane.margin>
-                        <Insets bottom="70.0" left="50.0" />
-                     </GridPane.margin>
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </CheckBox>
-                    <TextArea fx:id="txtDeskripsiTugas" prefHeight="129.0" prefWidth="415.0" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                        <GridPane.margin>
-                            <Insets left="50.0" right="100.0" />
-                        </GridPane.margin>
-                    </TextArea>
-                        <Button fx:id="btnKmb1" mnemonicParsing="false" onAction="#handleKembali" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: grey;" text="Kembali" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <GridPane.margin>
-                        <Insets bottom="30.0" left="250.0" top="50.0" />
-                     </GridPane.margin>
-                  </Button>
+                        </Label>
+                        <DatePicker fx:id="pickDL" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                            <GridPane.margin>
+                                <Insets left="25.0" />
+                            </GridPane.margin>
+                        </DatePicker>
                     </children>
                 </GridPane>
             </children>
