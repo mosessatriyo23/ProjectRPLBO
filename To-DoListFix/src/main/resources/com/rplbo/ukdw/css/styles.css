@@ -11,6 +11,10 @@
     -fx-background-radius: 20;
 }
 
+.sidebar-item-exitlogout:hover {
+    -fx-background-color: #ff8989;
+}
+
 .selected {
     -fx-padding: 10;
     -fx-spacing: 10;
@@ -35,6 +39,15 @@
 }
 
 .sidebar-item {
+    -fx-padding: 10;
+    -fx-spacing: 10;
+    -fx-alignment: center-left;
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s ease;
+}
+
+.sidebar-item-exitlogout {
     -fx-padding: 10;
     -fx-spacing: 10;
     -fx-alignment: center-left;
@@ -69,4 +82,48 @@
 
 .sidebar-item.active ImageView {
     -fx-effect: dropshadow(gaussian, white, 5, 0, 0, 0);
+}
+
+.semua-tugas-container {
+    -fx-padding: 20;
+    -fx-background-color: #f8f9fa;
+}
+
+.judul-semua-tugas {
+    -fx-font-size: 24px;
+    -fx-text-fill: #ffaf00;
+    -fx-font-family: "Arial Black";
+}
+
+.custom-table {
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-font-size: 13px;
+}
+
+.custom-table .column-header {
+    -fx-background-color: #ffecb3;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+
+.btn-tambah {
+    -fx-background-color: #ffaf00;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 10 20;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+}
+
+.clickable-label, .clickable-image {
+    -fx-cursor: hand; /* Ubah kursor saat hover */
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 1);
+}
+
+.clickable-label:hover, .clickable-image:hover {
+    -fx-opacity: 0.8;
+    -fx-translate-y: 1; /* Simulasi efek ditekan */
 }
