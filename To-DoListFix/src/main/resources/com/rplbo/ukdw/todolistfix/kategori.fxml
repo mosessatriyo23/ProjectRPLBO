@@ -137,29 +137,15 @@
                     </children>
                 </HBox>
                 <Pane prefHeight="135.0" prefWidth="135.0" />
-                <HBox fx:id="btnLogOut" alignment="CENTER" onMouseClicked="#handleLogoutClick" prefHeight="35.0" prefWidth="150.0" styleClass="sidebar-item" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css">
-                    <children>
-                        <ImageView fx:id="lgLogOut" fitHeight="15.0" fitWidth="15.0" onMouseClicked="#handleLogoutClick" pickOnBounds="true" preserveRatio="true" styleClass="sidebar-icon">
-                            <image>
-                                <Image url="@../images/logout.png" />
-                            </image>
-                        </ImageView>
-                        <Label fx:id="lblLogOut" onMouseClicked="#handleLogoutClick" prefHeight="35.0" prefWidth="70.0" stylesheets="@../css/styles.css" text="Log Out">
-                            <HBox.margin>
-                                <Insets left="5.0" />
-                            </HBox.margin>
-                        </Label>
-                    </children>
-                </HBox>
             </children>
         </VBox>
     </left>
     <center>
         <Pane prefHeight="500.0" prefWidth="800.0">
             <children>
-                <VBox alignment="CENTER" layoutX="-8.0" prefHeight="449.0" prefWidth="667.0">
+                <VBox alignment="CENTER" prefHeight="449.0" prefWidth="666.0">
                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="236.0" style="-fx-background-color: lightyellow;" text="Semua Kategori (2)" textFill="#ffaf00">
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="236.0" text="Semua Kategori (2)" textFill="#ffaf00">
                             <font>
                                 <Font name="Arial Bold" size="23.0" />
                             </font>
@@ -167,20 +153,20 @@
                                 <Insets bottom="25.0" />
                             </VBox.margin>
                         </Label>
-                        <TableView fx:id="tabell" prefHeight="214.0" prefWidth="667.0">
+                        <TableView fx:id="tabell" prefHeight="214.0" prefWidth="500.0">
                             <columns>
-                                <TableColumn fx:id="no" prefWidth="75.0" text="No" />
-                                <TableColumn fx:id="namaKategori" prefWidth="228.79996490478516" text="Nama Kategori" />
-                                <TableColumn fx:id="deskripsi" prefWidth="191.20001220703125" text="Deskripsi" />
-                                <TableColumn fx:id="daftarTugas" minWidth="0.0" prefWidth="170.40004272460942" text="Tugas" />
+                                <TableColumn fx:id="no" prefWidth="36.79995882511139" text="No" />
+                                <TableColumn fx:id="namaKategori" prefWidth="150.80004119873047" text="Nama Kategori" />
+                                <TableColumn fx:id="deskripsi" prefWidth="150.2000427246094" text="Deskripsi" />
+                                <TableColumn fx:id="daftarTugasKolom" prefWidth="304.2000427246094" text="Daftar Tugas" />
                             </columns>
                             <VBox.margin>
-                                <Insets bottom="50.0" />
+                                <Insets bottom="50.0" right="2.0" />
                             </VBox.margin>
                         </TableView>
                         <Pane prefHeight="71.0" prefWidth="667.0">
                             <children>
-                                <Button fx:id="btnEditKategori" layoutX="252.0" layoutY="28.0" mnemonicParsing="false" onAction="#handleEditKategori" prefHeight="59.0" prefWidth="164.0" style="-fx-border-style: 10;" styleClass="btnTambahTugas" stylesheets="@../css/styles.css" text="Edit Kategori">
+                                <Button fx:id="btnEditKategori" layoutX="252.0" layoutY="28.0" mnemonicParsing="false" onAction="#handleEditKategori" prefHeight="59.0" prefWidth="164.0" styleClass="btn-tambah" stylesheets="@../css/styles.css" text="Edit Kategori">
                                     <font>
                                         <Font name="Arial" size="12.0" />
                                     </font>
@@ -188,7 +174,7 @@
                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                     </padding>
                                 </Button>
-                                <Button layoutX="45.0" layoutY="28.0" mnemonicParsing="false" onAction="#handleTambahKategori" prefHeight="59.0" prefWidth="164.0" style="-fx-border-style: 10;" styleClass="btnTambahTugas" stylesheets="@../css/styles.css" text="Tambah Kategori">
+                                <Button layoutX="45.0" layoutY="28.0" mnemonicParsing="false" onAction="#handleTambahKategori" prefHeight="59.0" prefWidth="164.0" styleClass="btn-tambah" stylesheets="@../css/styles.css" text="Tambah Kategori">
                                     <font>
                                         <Font name="Arial" size="12.0" />
                                     </font>
@@ -196,7 +182,7 @@
                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                     </padding>
                                 </Button>
-                                <Button fx:id="btnHapusKategori" layoutX="458.0" layoutY="28.0" mnemonicParsing="false" onAction="#handleHapusKategori" prefHeight="59.0" prefWidth="164.0" style="-fx-border-style: 10;" styleClass="btnTambahTugas" stylesheets="@../css/styles.css" text="Hapus Kategori">
+                                <Button fx:id="btnHapusKategori" layoutX="458.0" layoutY="28.0" mnemonicParsing="false" onAction="#handleHapusKategori" prefHeight="59.0" prefWidth="164.0" styleClass="btn-tambah" stylesheets="@../css/styles.css" text="Hapus Kategori">
                                     <font>
                                         <Font name="Arial" size="12.0" />
                                     </font>
