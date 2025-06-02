@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rplbo.ukdw.todolistfix.controller.SemuaTugasController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rplbo.ukdw.todolistfix.controller.SemuaTugasController">
     <top>
         <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="400.0" spacing="20.0" styleClass="white-backgorund" stylesheets="@../css/styles.css" BorderPane.alignment="CENTER">
             <BorderPane.margin>
@@ -34,7 +25,7 @@
                 <Separator maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="50.0" prefWidth="4.0" />
                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="30.0" prefWidth="211.0" styleClass="round-layout" stylesheets="@../css/styles.css">
                     <children>
-                        <TextField fx:id="searchbox" prefHeight="26.0" prefWidth="178.0" promptText="Cari" styleClass="transparent" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css" />
+                        <TextField fx:id="searchFieldSemuaTugas" prefHeight="26.0" prefWidth="178.0" promptText="Cari" styleClass="transparent" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css" />
                         <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/search.png" />
@@ -146,20 +137,6 @@
                     </children>
                 </HBox>
                 <Pane prefHeight="135.0" prefWidth="135.0" />
-                <HBox fx:id="btnLogOut" alignment="CENTER" onMouseClicked="#handleLogoutClick" prefHeight="35.0" prefWidth="150.0" styleClass="sidebar-item" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css">
-                    <children>
-                        <ImageView fx:id="lgLogOut" fitHeight="15.0" fitWidth="15.0" onMouseClicked="#handleLogoutClick" pickOnBounds="true" preserveRatio="true" styleClass="sidebar-icon">
-                            <image>
-                                <Image url="@../images/logout.png" />
-                            </image>
-                        </ImageView>
-                        <Label fx:id="lblLogOut" onMouseClicked="#handleLogoutClick" prefHeight="35.0" prefWidth="70.0" stylesheets="@../css/styles.css" text="Log Out">
-                            <HBox.margin>
-                                <Insets left="5.0" />
-                            </HBox.margin>
-                        </Label>
-                    </children>
-                </HBox>
             </children>
         </VBox>
     </left>
@@ -168,7 +145,7 @@
             <children>
                 <VBox alignment="CENTER" prefHeight="449.0" prefWidth="667.0">
                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="236.0" style="-fx-background-color: lightyellow;" text="Semua Tugas (05)" textFill="#ffaf00">
+                        <Label fx:id="lblSumSemuaTugas" alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="236.0" text="Semua Tugas (05)" textFill="#ffaf00">
                             <font>
                                 <Font name="Arial Bold" size="23.0" />
                             </font>
@@ -176,20 +153,25 @@
                                 <Insets bottom="25.0" />
                             </VBox.margin>
                         </Label>
-                        <TableView fx:id="tabell" prefHeight="200.0" prefWidth="200.0">
+                        <Label fx:id="lblTugasSelesaiCount" text="Tugas Selesai: 0" />
+                        <TableView fx:id="tabell" prefHeight="300.0" prefWidth="660.0" style="-fx-background-color: #f8f8f8; -fx-border-color: #e0e0e0;">
                             <columns>
-                                <TableColumn fx:id="no" prefWidth="75.0" text="No" />
-                                <TableColumn fx:id="judulTugas" prefWidth="179.9999771118164" text="Judul Tugas" />
-                                <TableColumn fx:id="deskripsi" prefWidth="268.8000183105469" text="Deskripsi" />
-                                <TableColumn fx:id="status" prefWidth="144.00006103515625" text="Status" />
+                                <TableColumn fx:id="no" prefWidth="38.399964809417725" text="No" />
+                                <TableColumn fx:id="judulTugas" prefWidth="128.00003814697266" text="Judul Tugas" />
+                                <TableColumn fx:id="deskripsi" prefWidth="167.99993896484375" text="Deskripsi" />
+                                <TableColumn fx:id="deadline" prefWidth="132.0" text="Deadline" />
+                                <TableColumn fx:id="status" prefWidth="50.399993896484375" text="Status" />
+                                <TableColumn fx:id="kolomAksiSelesai" text="Selesai" prefWidth="80"/>
+                                <TableColumn fx:id="edit" prefWidth="64.0001220703125" text="Edit" />
+                                <TableColumn fx:id="hapus" prefWidth="97.599853515625" text="Hapus" />
                             </columns>
                             <VBox.margin>
-                                <Insets bottom="50.0" />
+                                <Insets bottom="30.0" />
                             </VBox.margin>
                         </TableView>
-                        <Button fx:id="btnTambahTugas" mnemonicParsing="false" onAction="#actionTambahTugas" prefHeight="59.0" prefWidth="164.0" style="-fx-border-style: 10;" styleClass="btnTambahTugas" stylesheets="@../css/styles.css" text="Tambah Tugas Baru">
+                        <Button fx:id="btnTambahTugas" mnemonicParsing="false" onMouseClicked="#actionTambahTugas" prefHeight="59.0" prefWidth="164.0" styleClass="btn-tambah" stylesheets="@../css/styles.css" text="Tambah Tugas Baru">
                             <VBox.margin>
-                                <Insets left="450.0" />
+                                <Insets bottom="20.0" left="450.0" />
                             </VBox.margin>
                             <font>
                                 <Font name="Arial" size="12.0" />
@@ -198,22 +180,6 @@
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </padding>
                         </Button>
-                        <!--                  <TableView fx:id="tabell" prefHeight="258.0" prefWidth="662.0" tableMenuButtonVisible="true">-->
-                        <!--                     <columns>-->
-                        <!--                        <TableColumn fx:id="no" prefWidth="75.0" text="No" />-->
-                        <!--                        <TableColumn fx:id="judulTugas" prefWidth="217.59999084472656" text="Judul Tugas" />-->
-                        <!--                        <TableColumn fx:id="deskripsi" prefWidth="188.00006103515625" text="Deskripsi" />-->
-                        <!--                        <TableColumn fx:id="status" prefWidth="181.5999755859375" text="Status" />-->
-                        <!--                     </columns>-->
-                        <!--                  </TableView>-->
-                        <!--                  <Button fx:id="btnTambahTugas" alignment="CENTER" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="53.0" prefWidth="157.0" text="Tambah Tugas Baru" textAlignment="CENTER" wrapText="true">-->
-                        <!--                     <font>-->
-                        <!--                        <Font size="14.0" />-->
-                        <!--                     </font>-->
-                        <!--                     <VBox.margin>-->
-                        <!--                        <Insets left="450.0" top="15.0" />-->
-                        <!--                     </VBox.margin>-->
-                        <!--                  </Button>-->
                     </children>
                 </VBox>
             </children>
