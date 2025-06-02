@@ -34,14 +34,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-// import java.time.YearMonth; // Tidak terpakai
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-public class PrioritasController implements Initializable { // Tambahkan "implements Initializable"
+public class PrioritasController implements Initializable {
     @FXML private HBox btnHome;
     @FXML private Label lblJmMntDtk;
     @FXML private Label lblTglBlnThn;
@@ -55,13 +54,12 @@ public class PrioritasController implements Initializable { // Tambahkan "implem
     @FXML private TableColumn<Task, String> colDeadline;
     @FXML private TableColumn<Task, String> colKategori;
 
-    // private YearMonth currentYearMonth; // Tidak terpakai
 
     private TaskDao taskDao;
     private int currentUserId = -1;
     private ObservableList<Task> prioritasTaskList;
 
-    @Override // Tambahkan @Override
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.taskDao = new TaskDAOManager();
         this.prioritasTaskList = FXCollections.observableArrayList();
@@ -82,7 +80,7 @@ public class PrioritasController implements Initializable { // Tambahkan "implem
         }
 
         startClockThread();
-        // currentYearMonth = YearMonth.now(); // Tidak terpakai
+
     }
 
     private void startClockThread() {
@@ -90,24 +88,16 @@ public class PrioritasController implements Initializable { // Tambahkan "implem
             SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yy");
             while (true) {
-                // Pemeriksaan UI readiness yang lebih aman
-                // Cukup periksa apakah kita berada di FX Application Thread sebelum mengakses scene
-                // Atau lebih baik lagi, lakukan semua pemeriksaan null di dalam Platform.runLater
-                // Namun, untuk keluar dari thread jika UI tidak siap, pemeriksaan awal bisa berguna.
                 if (Thread.currentThread().isInterrupted()) {
                     System.err.println("Clock thread was interrupted and will exit.");
                     break;
                 }
 
-                // Kondisi keluar jika aplikasi JavaFX sudah mulai shutdown atau scene tidak valid
-                // Ini agak sulit dilakukan secara sempurna tanpa referensi ke Stage utama
-                // Namun, jika lblJmMntDtk menjadi null (misalnya FXML di-unload), itu bisa jadi indikasi
                 try {
                     if (Platform.isFxApplicationThread() && (lblJmMntDtk == null || lblJmMntDtk.getScene() == null || lblJmMntDtk.getScene().getWindow() == null || !lblJmMntDtk.getScene().getWindow().isShowing())) {
-                        // Kondisi di atas mungkin terlalu agresif atau tidak selalu akurat
-                        // Lebih aman adalah mengandalkan setDaemon(true)
+
                     }
-                } catch (Exception e) { // Catching generic exception if getScene() or getWindow() fails during shutdown
+                } catch (Exception e) {
                     System.err.println("Exception checking UI state in clock thread, exiting: " + e.getMessage());
                     break;
                 }
@@ -125,13 +115,13 @@ public class PrioritasController implements Initializable { // Tambahkan "implem
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException ex) {
-                    Thread.currentThread().interrupt(); // Setel kembali status interrupted
+                    Thread.currentThread().interrupt();
                     System.err.println("Clock thread interrupted: " + ex.getMessage());
-                    break; // Keluar dari loop
+                    break;
                 }
             }
         });
-        clock.setDaemon(true); // Pastikan thread ini tidak mencegah aplikasi keluar
+        clock.setDaemon(true);
         clock.start();
     }
 
@@ -154,7 +144,6 @@ public class PrioritasController implements Initializable { // Tambahkan "implem
         Stage stage = (Stage) node.getScene().getWindow();
         if (stage != null) {
             stage.setScene(new Scene(root));
-            // Anda bisa set judul stage di sini jika perlu, tergantung fxmlPath
             // if (fxmlPath.contains("semuatugas")) stage.setTitle("Semua Tugas");
         } else {
             System.err.println("Stage tidak ditemukan dari node. Tidak dapat memuat scene.");
@@ -162,7 +151,6 @@ public class PrioritasController implements Initializable { // Tambahkan "implem
     }
 
 
-    // Metode navigasi yang ada di sisi kiri (sidebar)
     @FXML
     private void handleHomeClick(MouseEvent event) throws IOException {
         loadSceneFromEvent("/com/rplbo/ukdw/todolistfix/todolist.fxml", event);
@@ -249,7 +237,6 @@ public class PrioritasController implements Initializable { // Tambahkan "implem
             }
         } catch (SQLException e) {
             System.err.println("Gagal mengambil username dari DB: " + e.getMessage());
-            // Tidak menampilkan alert dari sini, cukup log
         }
         return "User";
     }
@@ -276,13 +263,12 @@ public class PrioritasController implements Initializable { // Tambahkan "implem
                 return;
             }
 
-            // Filter tugas yang prioritasnya true
             List<Task> filteredPrioritasTasks = semuaTugasUser.stream()
-                    .filter(task -> task != null && task.isPrioritas()) // Pastikan task.isPrioritas() ada dan benar
+                    .filter(task -> task != null && task.isPrioritas())
                     .collect(Collectors.toList());
 
             if (prioritasTaskList != null) {
-                prioritasTaskList.setAll(filteredPrioritasTasks); // Cara efisien untuk update table
+                prioritasTaskList.setAll(filteredPrioritasTasks);
             } else {
                 System.err.println("prioritasTaskList belum diinisialisasi!");
             }
@@ -297,13 +283,13 @@ public class PrioritasController implements Initializable { // Tambahkan "implem
             }
 
         } catch (SQLException e) {
-            e.printStackTrace(); // Log stack trace lengkap
+            e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Gagal Memuat Tugas Prioritas", "Kesalahan SQL: " + e.getMessage());
             if (prioritasTaskList != null) prioritasTaskList.clear();
             if (tableViewPrioritas != null) tableViewPrioritas.setPlaceholder(new Label("Gagal memuat tugas karena kesalahan database."));
             if (lblSumPrioritas != null) lblSumPrioritas.setText("Prioritas (Error SQL)");
         } catch (Exception e) {
-            e.printStackTrace(); // Log stack trace lengkap
+            e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Error Tidak Diketahui", "Error saat memuat tugas prioritas: " + e.getMessage());
             if (prioritasTaskList != null) prioritasTaskList.clear();
             if (tableViewPrioritas != null) tableViewPrioritas.setPlaceholder(new Label("Gagal memuat tugas karena error tidak diketahui."));
@@ -312,7 +298,6 @@ public class PrioritasController implements Initializable { // Tambahkan "implem
     }
 
     private void showAlert(Alert.AlertType alertType, String title, String message) {
-        // Pastikan alert dijalankan di JavaFX Application Thread
         if (Platform.isFxApplicationThread()) {
             Alert alert = new Alert(alertType);
             alert.setTitle(title);
