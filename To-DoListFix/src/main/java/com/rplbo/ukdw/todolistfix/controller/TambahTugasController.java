@@ -321,8 +321,8 @@ public class TambahTugasController {
         txtDeskripsiTugas.clear();
         pickDL.setValue(null);
         chkPrioritas.setSelected(false);
-        kategoriComboBox.getSelectionModel().clearSelection(); // Juga bersihkan pilihan ComboBox
-        kategoriComboBox.setPromptText("Pilih Kategori"); // Kembalikan prompt default
+        kategoriComboBox.getSelectionModel().clearSelection();
+        kategoriComboBox.setPromptText("Pilih Kategori");
     }
 
     private void showAlert(Alert.AlertType alertType, String title, String message) {
