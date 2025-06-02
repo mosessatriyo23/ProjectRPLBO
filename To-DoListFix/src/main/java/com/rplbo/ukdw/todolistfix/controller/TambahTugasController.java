@@ -32,11 +32,11 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-// import java.time.YearMonth; // Tidak digunakan
+
 import java.util.Calendar;
-// import java.time.format.DateTimeFormatter; // Tidak digunakan secara langsung
+
 import java.util.List;
-// import java.util.Date; // Tidak digunakan
+
 
 public class TambahTugasController {
 
@@ -80,15 +80,14 @@ public class TambahTugasController {
     private Label lblTglBlnThn;
 
     private TaskDao taskDao;
-    private int loggedInUserId = -1; // Gunakan variabel ini secara konsisten
+    private int loggedInUserId = -1;
     private KategoriDao kategoriDao;
     private ObservableList<Kategori> observableDaftarKategori;
-    // private int currentUserId; // Variabel ini redundan dan menyebabkan masalah, kita hapus atau tidak gunakan
 
     @FXML
     public void initialize() {
         this.taskDao = new TaskDAOManager();
-        this.loggedInUserId = SessionHelper.getUserId(); // Ambil ID user dari session
+        this.loggedInUserId = SessionHelper.getUserId();
 
         if (this.loggedInUserId == -1) {
             lblname.setText("Guest");
@@ -103,9 +102,9 @@ public class TambahTugasController {
         startClockThread();
         kategoriDao = new KategoriDAOManager();
         observableDaftarKategori = FXCollections.observableArrayList();
-        kategoriComboBox.setItems(observableDaftarKategori); // Binding dilakukan di sini
+        kategoriComboBox.setItems(observableDaftarKategori);
         configureKategoriComboBox();
-        loadKategoriToComboBox(); // Dipanggil setelah loggedInUserId di-set
+        loadKategoriToComboBox();
     }
 
     private void startClockThread() {
@@ -167,12 +166,11 @@ public class TambahTugasController {
         });
     }
 
-    // Metode yang dimodifikasi untuk menggunakan loggedInUserId
     private void loadKategoriToComboBox() {
-        // Menggunakan this.loggedInUserId yang sudah diinisialisasi dari SessionHelper
+
         System.out.println("COMBOBOX_DEBUG: Memulai loadKategoriToComboBox(). loggedInUserId: " + this.loggedInUserId);
 
-        if (this.loggedInUserId == -1) { // Cek menggunakan loggedInUserId
+        if (this.loggedInUserId == -1) {
             observableDaftarKategori.clear();
             kategoriComboBox.setPromptText("Login untuk memilih kategori");
             System.out.println("COMBOBOX_DEBUG: Belum login (loggedInUserId: " + this.loggedInUserId + "), ComboBox dikosongkan.");
@@ -181,7 +179,7 @@ public class TambahTugasController {
 
         try {
             System.out.println("COMBOBOX_DEBUG: Mencoba mengambil kategori dari DAO untuk userId: " + this.loggedInUserId);
-            List<Kategori> kategoriUser = kategoriDao.getKategoriByUserId(this.loggedInUserId); // Menggunakan loggedInUserId
+            List<Kategori> kategoriUser = kategoriDao.getKategoriByUserId(this.loggedInUserId);
 
             System.out.println("COMBOBOX_DEBUG: DAO mengembalikan " + (kategoriUser == null ? "null" : kategoriUser.size()) + " kategori.");
 
@@ -271,7 +269,7 @@ public class TambahTugasController {
         newTask.setKategoriId(kategoriTerpilih != null ? kategoriTerpilih.getId() : null);
         newTask.setPrioritas(prioritas);
         newTask.setDeadline(deadline);
-        newTask.setIdUser(this.loggedInUserId); // Menggunakan loggedInUserId
+        newTask.setIdUser(this.loggedInUserId);
         newTask.setProgress("Belum Selesai");
 
         if (taskDao == null) {
