@@ -1,6 +1,7 @@
 package com.rplbo.ukdw.todolistfix;
 
 import com.rplbo.ukdw.todolistfix.controller.SearchableController;
+
 import com.rplbo.ukdw.todolistfix.util.DatabaseUtil;
 import com.rplbo.ukdw.todolistfix.util.SessionHelper;
 import javafx.application.Application;

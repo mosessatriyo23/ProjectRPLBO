@@ -10,8 +10,8 @@ import com.rplbo.ukdw.todolistfix.model.Task;
 import com.rplbo.ukdw.todolistfix.util.DatabaseUtil;
 import com.rplbo.ukdw.todolistfix.util.SessionHelper;
 
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
+import com.rplbo.ukdw.todolistfix.dao.TaskDAOManager;
+import com.rplbo.ukdw.todolistfix.dao.TaskDao;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -149,6 +149,7 @@ public class ToDoListController implements Initializable {
             showAlert(Alert.AlertType.ERROR, "Database Error", "Gagal memuat daftar tugas: " + e.getMessage());
             lblSemuaTugas.setText("Semua tugas (Error)");
         }
+
     }
 
     private void loadRingkasanPrioritas() {
@@ -281,7 +282,7 @@ public class ToDoListController implements Initializable {
             }
         }
     }
-
+  
     private HBox buatBarisTugas(Task tugas, int nomor) {
         HBox hboxBaris = new HBox(5);
         hboxBaris.setAlignment(Pos.CENTER_LEFT);
