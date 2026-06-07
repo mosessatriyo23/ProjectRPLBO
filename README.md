@@ -175,6 +175,7 @@ NIM: 71231000
 **Arthur Benedict P**
 Informatics — Universitas Kristen Duta Wacana
 NIM: 71231029
+
 ---
 
 ## 📄 License
