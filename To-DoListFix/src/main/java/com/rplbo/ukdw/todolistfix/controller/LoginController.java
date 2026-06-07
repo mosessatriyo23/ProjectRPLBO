@@ -4,8 +4,11 @@ import com.rplbo.ukdw.todolistfix.ToDoListApplication;
 import com.rplbo.ukdw.todolistfix.dao.UserDAO;
 import com.rplbo.ukdw.todolistfix.dao.UserDAOManager;
 import com.rplbo.ukdw.todolistfix.model.User;
+import com.rplbo.ukdw.todolistfix.util.SessionHelper;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,8 +19,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.mindrot.jbcrypt.BCrypt;
+import javafx.event.ActionEvent;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 
@@ -74,14 +80,15 @@ public class LoginController {
             return;
         }
         String rawPassword = passwordField.getText();
-        User user = userDao.getUserByUsername(username); // Fetch user from DB
+        User user = userDao.getUserByUsername(username);
         if (user != null && BCrypt.checkpw(rawPassword, user.getPassword())) {
-            FXMLLoader fxmlLoader = new FXMLLoader(ToDoListApplication.class.getResource("/com/rplbo/ukdw/todolistfix/todolist.fxml"));
+            SessionHelper.saveUserId(user.getId());
+            SessionHelper.setCurrentUser(user.getId());
+            FXMLLoader fxmlLoader = new FXMLLoader(ToDoListApplication.class.getResource("todolist.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) loginButton.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
-            // Here you would typically load the main application view
         } else {
             errorLabel.setText("Invalid username or password");
         }
@@ -93,5 +100,12 @@ public class LoginController {
         alert.setHeaderText(null);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+    public void onCloseLogin(MouseEvent mouseEvent) {
+        Node source = (Node) mouseEvent.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        Platform.setImplicitExit(true);
+        stage.close();
     }
 }

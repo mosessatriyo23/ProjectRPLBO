@@ -83,7 +83,6 @@ public class KategoriDAOManager implements KategoriDao {
 
     @Override
     public boolean updateKategori(Kategori kategori) throws SQLException {
-        // Nama kolom di DB: nama_kategori, deskripsi, id, user_id
         String sql = "UPDATE kategori SET nama_kategori = ?, deskripsi = ? WHERE id = ? AND user_id = ?";
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -178,7 +177,6 @@ public class KategoriDAOManager implements KategoriDao {
                 String nama = rs.getString("nama_kategori");
                 String desc = rs.getString("deskripsi");
                 kategori = new Kategori(kategoriId, nama, desc, userId);
-                // taskDao akan menggunakan nama tabel dan kolom yang sudah dikoreksi
                 List<Task> tugasUntukKategoriIni = this.taskDao.getTasksByKategoriIdAndUserId(kategoriId, userId);
                 if (tugasUntukKategoriIni != null) {
                     kategori.setDaftarTugas(tugasUntukKategoriIni);

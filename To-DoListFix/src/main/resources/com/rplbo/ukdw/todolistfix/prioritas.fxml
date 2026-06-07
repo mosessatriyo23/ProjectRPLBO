@@ -1,66 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rplbo.ukdw.todolistfix.controller.PrioritasController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+    prefHeight="500.0" prefWidth="800.0"
+    xmlns="http://javafx.com/javafx/17.0.12"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="com.rplbo.ukdw.todolistfix.controller.PrioritasController">
     <top>
-        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="400.0" spacing="20.0" styleClass="white-backgorund" stylesheets="@../css/styles.css" BorderPane.alignment="CENTER">
-            <BorderPane.margin>
-                <Insets />
-            </BorderPane.margin>
+        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="400.0" spacing="20.0"
+            styleClass="white-backgorund" stylesheets="@../css/styles.css" BorderPane.alignment="CENTER">
             <children>
-                <Label alignment="CENTER" prefHeight="50.0" prefWidth="114.0" text="TDL">
-                    <font>
-                        <Font name="Bebas Neue Regular" size="35.0" />
-                    </font>
-                </Label>
-                <Separator maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="50.0" prefWidth="4.0" />
-                <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="30.0" prefWidth="261.0" styleClass="round-layout" stylesheets="@../css/styles.css">
+                <Pane prefHeight="50.0" prefWidth="113.0">
                     <children>
-                        <TextField prefHeight="26.0" prefWidth="215.0" promptText="Cari" styleClass="transparent" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css" />
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/search.png" />
-                            </image>
+                        <ImageView fitHeight="31.0" fitWidth="110.0" layoutX="16.0" layoutY="10.0"
+                            pickOnBounds="true" preserveRatio="true">
+                            <image><Image url="@../images/logoPinnacle(2).png" /></image>
+                        </ImageView>
+                    </children>
+                </Pane>
+                <Separator maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                    orientation="VERTICAL" prefHeight="50.0" prefWidth="4.0" />
+                <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="30.0" prefWidth="211.0"
+                    styleClass="round-layout" stylesheets="@../css/styles.css">
+                    <children>
+                        <TextField fx:id="searchbox" prefHeight="26.0" prefWidth="178.0"
+                            promptText="Cari" styleClass="transparent" stylesheets="@../css/styles.css" />
+                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                            <image><Image url="@../images/search.png" /></image>
                         </ImageView>
                     </children>
                 </HBox>
                 <Pane prefHeight="50.0" prefWidth="118.0" HBox.hgrow="ALWAYS">
                     <children>
-                        <Label layoutY="10.0" prefHeight="30.0" prefWidth="75.0" text="16 : 15 : 00">
-                            <font>
-                                <Font size="15.0" />
-                            </font>
+                        <Label fx:id="lblJmMntDtk" layoutY="11.0" prefHeight="30.0" prefWidth="61.0"
+                            styleClass="transparent" stylesheets="@../css/styles.css"
+                            text="16 : 15 : 00" textFill="#8c8c8c">
+                            <font><Font name="Bebas Neue Regular" size="15.0" /></font>
+                        </Label>
+                        <Label fx:id="lblTglBlnThn" layoutX="61.0" layoutY="15.0"
+                            text="8 May 2025" textFill="#8c8c8c">
+                            <font><Font name="Bebas Neue Regular" size="15.0" /></font>
                         </Label>
                     </children>
                 </Pane>
                 <HBox alignment="CENTER" prefHeight="54.0" prefWidth="200.0">
                     <children>
-                        <Label fx:id="lblname" alignment="CENTER" text="Moses Satriyo" textAlignment="CENTER">
-                            <font>
-                                <Font name="Berlin Sans FB" size="14.0" />
-                            </font>
-                            <HBox.margin>
-                                <Insets right="20.0" />
-                            </HBox.margin>
+                        <Label fx:id="lblname" alignment="CENTER" text="User" textAlignment="CENTER">
+                            <font><Font name="Berlin Sans FB" size="14.0" /></font>
+                            <HBox.margin><Insets right="20.0" /></HBox.margin>
                         </Label>
-                        <ImageView fx:id="imguser" fitHeight="37.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/user.png" />
-                            </image>
+                        <ImageView fx:id="imguser" fitHeight="37.0" fitWidth="33.0"
+                            pickOnBounds="true" preserveRatio="true">
+                            <image><Image url="@../images/user.png" /></image>
                         </ImageView>
                     </children>
                 </HBox>
@@ -68,86 +64,78 @@
         </HBox>
     </top>
     <left>
-        <VBox prefHeight="450.0" prefWidth="133.0" styleClass="white-backgorund" stylesheets="@../css/styles.css" BorderPane.alignment="CENTER">
-            <BorderPane.margin>
-                <Insets />
-            </BorderPane.margin>
+        <VBox prefHeight="450.0" prefWidth="133.0" styleClass="white-backgorund"
+            stylesheets="@../css/styles.css" BorderPane.alignment="CENTER">
             <children>
                 <Pane prefHeight="117.0" prefWidth="134.0" />
-                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="150.0" styleClass="mouse-moved" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css">
+                <HBox fx:id="btnHome" alignment="CENTER" onMouseClicked="#handleHomeClick"
+                    prefHeight="35.0" prefWidth="150.0" styleClass="sidebar-item" stylesheets="@../css/styles.css">
                     <children>
-                        <ImageView fitHeight="20.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/home.png" />
-                            </image>
+                        <ImageView fx:id="lgHome" fitHeight="20.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                            <image><Image url="@../images/home.png" /></image>
                         </ImageView>
-                        <Label prefHeight="35.0" prefWidth="75.0" text="Home">
-                            <HBox.margin>
-                                <Insets left="5.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font name="Arial Bold" size="12.0" />
-                            </font>
+                        <Label fx:id="lblHome" prefHeight="35.0" prefWidth="75.0" styleClass="sidebar-label" text="Home">
+                            <HBox.margin><Insets left="5.0" /></HBox.margin>
+                            <font><Font name="Arial" size="12.0" /></font>
                         </Label>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="150.0" styleClass="mouse-moved" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css">
+                <HBox fx:id="btnSemuaTugas" alignment="CENTER" onMouseClicked="#handleSemuaTugasClick"
+                    prefHeight="35.0" prefWidth="150.0" styleClass="sidebar-item" stylesheets="@../css/styles.css">
                     <children>
-                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/to-do-list.png" />
-                            </image>
+                        <ImageView fx:id="lgSemuaTugas" fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                            <image><Image url="@../images/to-do-list.png" /></image>
                         </ImageView>
-                        <Label prefHeight="35.0" prefWidth="75.0" text="Semua Tugas">
-                            <HBox.margin>
-                                <Insets left="5.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font name="Arial" size="12.0" />
-                            </font>
+                        <Label fx:id="lblSemuaTugas1" prefHeight="35.0" prefWidth="75.0" styleClass="sidebar-label" text="Semua Tugas">
+                            <HBox.margin><Insets left="5.0" /></HBox.margin>
+                            <font><Font name="Arial" size="12.0" /></font>
                         </Label>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="150.0" styleClass="mouse-moved" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css">
+                <HBox fx:id="btnKategori" alignment="CENTER" onMouseClicked="#handleKategoriClick"
+                    prefHeight="35.0" prefWidth="150.0" styleClass="sidebar-item" stylesheets="@../css/styles.css">
                     <children>
-                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/application.png" />
-                            </image>
+                        <ImageView fx:id="lgKategori" fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                            <image><Image url="@../images/application.png" /></image>
                         </ImageView>
-                        <Label prefHeight="35.0" prefWidth="75.0" text="Kategori">
-                            <HBox.margin>
-                                <Insets left="5.0" />
-                            </HBox.margin>
+                        <Label fx:id="lblKategori1" prefHeight="35.0" prefWidth="75.0" styleClass="sidebar-label" text="Kategori">
+                            <HBox.margin><Insets left="5.0" /></HBox.margin>
                         </Label>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="150.0" styleClass="selected" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css">
+                <HBox fx:id="btnPrioritas" alignment="CENTER" onMouseClicked="#handlePrioritasClick"
+                    prefHeight="35.0" prefWidth="150.0" styleClass="selected" stylesheets="@../css/styles.css">
                     <children>
-                        <ImageView fitHeight="35.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/star.png" />
-                            </image>
+                        <ImageView fx:id="lgPrioritas" fitHeight="35.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                            <image><Image url="@../images/star.png" /></image>
                         </ImageView>
-                        <Label prefHeight="35.0" prefWidth="75.0" text="Prioritas">
-                            <HBox.margin>
-                                <Insets left="5.0" />
-                            </HBox.margin>
+                        <Label fx:id="lblPrioritas1" prefHeight="35.0" prefWidth="75.0" styleClass="sidebar-label" text="Prioritas">
+                            <HBox.margin><Insets left="5.0" /></HBox.margin>
                         </Label>
                     </children>
                 </HBox>
-                <Pane prefHeight="135.0" prefWidth="135.0" />
-                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="150.0" styleClass="mouse-moved" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css">
+                <Pane prefHeight="135.0" prefWidth="135.0">
                     <children>
-                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/logout.png" />
-                            </image>
+                        <HBox fx:id="btnExit" alignment="CENTER_LEFT" layoutY="96.0" onMouseClicked="#handleExitClick" prefHeight="41.0" prefWidth="135.0" styleClass="sidebar-item-exitlogout" stylesheets="@../css/styles.css">
+                            <children>
+                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" styleClass="sidebar-icon">
+                                    <image><Image url="@../images/exit.png" /></image>
+                                </ImageView>
+                                <Label onMouseClicked="#handleExitClick" prefHeight="35.0" prefWidth="70.0" styleClass="sidebar-label" stylesheets="@../css/styles.css" text="Exit">
+                                    <HBox.margin><Insets /></HBox.margin>
+                                </Label>
+                            </children>
+                        </HBox>
+                    </children>
+                </Pane>
+
+                <HBox fx:id="btnLogOut" alignment="CENTER" onMouseClicked="#handleLogoutClick" prefHeight="35.0" prefWidth="150.0" styleClass="sidebar-item-exitlogout" stylesheets="@../css/styles.css">
+                    <children>
+                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" styleClass="sidebar-icon">
+                            <image><Image url="@../images/logout.png" /></image>
                         </ImageView>
-                        <Label prefHeight="35.0" prefWidth="70.0" text="Log Out">
-                            <HBox.margin>
-                                <Insets left="5.0" />
-                            </HBox.margin>
+                        <Label onMouseClicked="#handleLogoutClick" prefHeight="35.0" prefWidth="70.0" styleClass="sidebar-label" stylesheets="@../css/styles.css" text="Log Out">
+                            <HBox.margin><Insets left="5.0" /></HBox.margin>
                         </Label>
                     </children>
                 </HBox>
@@ -155,25 +143,60 @@
         </VBox>
     </left>
     <center>
-        <VBox alignment="CENTER" prefHeight="449.0">
-            <children>
-                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="667.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-                    <children>
-                        <Label layoutX="218.0" layoutY="21.0" style="-fx-background-color: lightyellow;" text="Semua Prioritas (1)" textFill="#ffaf00">
-                            <font>
-                                <Font name="Arial Black" size="22.0" />
-                            </font>
-                        </Label>
-                        <TableView fx:id="tableView" layoutY="70.0" prefHeight="379.0" prefWidth="667.0">
-                            <columns>
-                                <TableColumn fx:id="colNo" prefWidth="75.0" text="No" />
-                                <TableColumn fx:id="colNama" prefWidth="228.0" text="Nama Prioritas" />
-                                <TableColumn fx:id="colDeskripsi" prefWidth="363.0" text="Ddeskripsi" />
-                            </columns>
-                        </TableView>
-                    </children>
-                </AnchorPane>
-            </children>
+        <VBox prefHeight="450.0" prefWidth="667.0" spacing="0"
+            style="-fx-background-color: #F7F8FC;" stylesheets="@../css/styles.css">
+            <padding><Insets top="20.0" right="24.0" bottom="20.0" left="24.0" /></padding>
+
+            <!-- Page Header with AI Summary -->
+            <HBox alignment="CENTER_LEFT" spacing="12" prefHeight="50.0">
+                <children>
+                    <VBox spacing="2" HBox.hgrow="ALWAYS">
+                        <children>
+                            <HBox alignment="CENTER_LEFT" spacing="8">
+                                <children>
+                                    <Label text="⭐" style="-fx-font-size: 18;" />
+                                    <Label fx:id="lblSumPrioritas" text="Semua Prioritas"
+                                        styleClass="page-title" stylesheets="@../css/styles.css" />
+                                </children>
+                            </HBox>
+                            <Label text="Tugas-tugas yang kamu tandai sebagai prioritas"
+                                styleClass="page-subtitle" stylesheets="@../css/styles.css" />
+                        </children>
+                    </VBox>
+                    <!-- AI Analyze Button -->
+                    <Button fx:id="btnAiAnalyze" text="✦  Analisis Prioritas"
+                        onAction="#handleAiAnalyzePrioritas"
+                        style="-fx-background-color: linear-gradient(to right, #6C63FF, #a78bfa); -fx-text-fill: white; -fx-background-radius: 10; -fx-cursor: hand; -fx-padding: 8 14; -fx-font-size: 12; -fx-font-family: 'Arial Bold'; -fx-effect: dropshadow(gaussian, rgba(108,99,255,0.4), 8, 0, 0, 3);"
+                        prefHeight="34.0" />
+                </children>
+                <VBox.margin><Insets bottom="10.0" /></VBox.margin>
+            </HBox>
+
+            <!-- AI Summary Bar -->
+            <HBox fx:id="aiSummaryBar" alignment="CENTER_LEFT" spacing="10"
+                style="-fx-background-color: linear-gradient(to right, #F0EDFF, #EDE8FF); -fx-background-radius: 10; -fx-border-color: #C4B5FD; -fx-border-radius: 10; -fx-border-width: 1.5; -fx-padding: 10 14;"
+                prefWidth="619.0">
+                <children>
+                    <Label text="✦" style="-fx-font-size: 14; -fx-text-fill: #6C63FF;" />
+                    <Label fx:id="lblAiPrioritasSummary"
+                        text="Klik 'Analisis Prioritas' untuk mendapat ringkasan dan rekomendasi AI tentang tugas prioritasmu."
+                        style="-fx-font-size: 12; -fx-text-fill: #444; -fx-wrap-text: true;"
+                        wrapText="true" HBox.hgrow="ALWAYS" />
+                </children>
+                <VBox.margin><Insets bottom="12.0" /></VBox.margin>
+            </HBox>
+
+            <!-- Table -->
+            <TableView fx:id="tableViewPrioritas" VBox.vgrow="ALWAYS"
+                styleClass="custom-table" stylesheets="@../css/styles.css"
+                prefHeight="310.0" prefWidth="619.0">
+                <columns>
+                    <TableColumn fx:id="colNo" prefWidth="50.0" text="No" />
+                    <TableColumn fx:id="colNama" prefWidth="220.0" text="Nama Tugas Prioritas" />
+                    <TableColumn fx:id="colDeskripsi" prefWidth="249.0" text="Deskripsi" />
+                    <TableColumn fx:id="colDeadline" prefWidth="100.0" text="Deadline" />
+                </columns>
+            </TableView>
         </VBox>
     </center>
 </BorderPane>
