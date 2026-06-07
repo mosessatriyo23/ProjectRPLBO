@@ -162,8 +162,19 @@ This project was built for the **Object-Oriented Software Engineering (RPLBO)** 
 **Moses Satriyo Gentur Pinandhito**
 Informatics — Universitas Kristen Duta Wacana
 NIM: 71231016
-Role: AI Engineer & Backend Developer
+Role: Software Engineer & UI Designer
 
+**Mikhael Lev Hasiholan N**
+Informatics — Universitas Kristen Duta Wacana
+NIM: 71230991
+
+**Nicholas Ayodya D**
+Informatics — Universitas Kristen Duta Wacana
+NIM: 71231000
+
+**Arthur Benedict P**
+Informatics — Universitas Kristen Duta Wacana
+NIM: 71231029
 ---
 
 ## 📄 License
