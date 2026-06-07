@@ -1,66 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rplbo.ukdw.todolistfix.controller.KategoriController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rplbo.ukdw.todolistfix.controller.KategoriController">
     <top>
         <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="400.0" spacing="20.0" styleClass="white-backgorund" stylesheets="@../css/styles.css" BorderPane.alignment="CENTER">
-            <BorderPane.margin>
-                <Insets />
-            </BorderPane.margin>
             <children>
                 <Pane prefHeight="50.0" prefWidth="113.0">
                     <children>
                         <ImageView fitHeight="31.0" fitWidth="110.0" layoutX="16.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/logoPinnacle(2).png" />
-                            </image>
+                            <image><Image url="@../images/logoPinnacle(2).png" /></image>
                         </ImageView>
                     </children>
                 </Pane>
                 <Separator maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="50.0" prefWidth="4.0" />
                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="30.0" prefWidth="211.0" styleClass="round-layout" stylesheets="@../css/styles.css">
                     <children>
-                        <TextField fx:id="searchbox" prefHeight="26.0" prefWidth="178.0" promptText="Cari" styleClass="transparent" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css" />
+                        <TextField fx:id="searchbox" prefHeight="26.0" prefWidth="178.0" promptText="Cari" styleClass="transparent" stylesheets="@../css/styles.css" />
                         <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/search.png" />
-                            </image>
+                            <image><Image url="@../images/search.png" /></image>
                         </ImageView>
                     </children>
                 </HBox>
                 <Pane prefHeight="50.0" prefWidth="118.0" HBox.hgrow="ALWAYS">
                     <children>
                         <Label fx:id="lblJmMntDtk" layoutY="11.0" prefHeight="30.0" prefWidth="61.0" styleClass="transparent" stylesheets="@../css/styles.css" text="16 : 15 : 00" textFill="#8c8c8c">
-                            <font>
-                                <Font name="Bebas Neue Regular" size="15.0" />
-                            </font>
+                            <font><Font name="Bebas Neue Regular" size="15.0" /></font>
                         </Label>
                         <Label fx:id="lblTglBlnThn" layoutX="61.0" layoutY="15.0" text="8 May 2025" textFill="#8c8c8c">
-                            <font>
-                                <Font name="Bebas Neue Regular" size="15.0" />
-                            </font>
+                            <font><Font name="Bebas Neue Regular" size="15.0" /></font>
                         </Label>
                     </children>
                 </Pane>
                 <HBox alignment="CENTER" prefHeight="54.0" prefWidth="200.0">
                     <children>
-                        <Label fx:id="lblname" alignment="CENTER" text="Moses Satriyo" textAlignment="CENTER">
-                            <font>
-                                <Font name="Berlin Sans FB" size="14.0" />
-                            </font>
-                            <HBox.margin>
-                                <Insets right="20.0" />
-                            </HBox.margin>
+                        <Label fx:id="lblname" alignment="CENTER" text="User" textAlignment="CENTER">
+                            <font><Font name="Berlin Sans FB" size="14.0" /></font>
+                            <HBox.margin><Insets right="20.0" /></HBox.margin>
                         </Label>
                         <ImageView fx:id="imguser" fitHeight="37.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/user.png" />
-                            </image>
+                            <image><Image url="@../images/user.png" /></image>
                         </ImageView>
                     </children>
                 </HBox>
@@ -69,154 +61,116 @@
     </top>
     <left>
         <VBox prefHeight="450.0" prefWidth="133.0" styleClass="white-backgorund" stylesheets="@../css/styles.css" BorderPane.alignment="CENTER">
-            <BorderPane.margin>
-                <Insets />
-            </BorderPane.margin>
             <children>
                 <Pane prefHeight="117.0" prefWidth="134.0" />
-                <HBox fx:id="btnHome" alignment="CENTER" onMouseClicked="#handleHomeClick" prefHeight="35.0" prefWidth="150.0" styleClass="sidebar-item" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css">
+                <HBox fx:id="btnHome" alignment="CENTER" onMouseClicked="#handleHomeClick" prefHeight="35.0" prefWidth="150.0" styleClass="sidebar-item" stylesheets="@../css/styles.css">
                     <children>
-                        <ImageView fx:id="lgHome" fitHeight="20.0" fitWidth="15.0" onMouseClicked="#handleHomeClick" pickOnBounds="true" preserveRatio="true" styleClass="sidebar-icon">
-                            <image>
-                                <Image url="@../images/home.png" />
-                            </image>
+                        <ImageView fx:id="lgHome" fitHeight="20.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                            <image><Image url="@../images/home.png" /></image>
                         </ImageView>
-                        <Label fx:id="lblHome" onMouseClicked="#handleHomeClick" prefHeight="35.0" prefWidth="75.0" styleClass="sidebar-label" stylesheets="@../css/styles.css" text="Home">
-                            <HBox.margin>
-                                <Insets left="5.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font name="Arial" size="12.0" />
-                            </font>
+                        <Label fx:id="lblHome" prefHeight="35.0" prefWidth="75.0" styleClass="sidebar-label" text="Home">
+                            <HBox.margin><Insets left="5.0" /></HBox.margin>
+                            <font><Font name="Arial" size="12.0" /></font>
                         </Label>
                     </children>
                 </HBox>
-                <HBox fx:id="btnSemuaTugas" alignment="CENTER" onMouseClicked="#handleSemuaTugasClick" prefHeight="35.0" prefWidth="150.0" styleClass="sidebar-item" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css">
+                <HBox fx:id="btnSemuaTugas" alignment="CENTER" onMouseClicked="#handleSemuaTugasClick" prefHeight="35.0" prefWidth="150.0" styleClass="sidebar-item" stylesheets="@../css/styles.css">
                     <children>
-                        <ImageView fx:id="lgSemuaTugas" fitHeight="15.0" fitWidth="15.0" onMouseClicked="#handleSemuaTugasClick" pickOnBounds="true" preserveRatio="true" styleClass="sidebar-icon">
-                            <image>
-                                <Image url="@../images/to-do-list.png" />
-                            </image>
+                        <ImageView fx:id="lgSemuaTugas" fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                            <image><Image url="@../images/to-do-list.png" /></image>
                         </ImageView>
-                        <Label fx:id="lblSemuaTugas1" onMouseClicked="#handleSemuaTugasClick" prefHeight="35.0" prefWidth="75.0" styleClass="sidebar-label" stylesheets="@../css/styles.css" text="Semua Tugas">
-                            <HBox.margin>
-                                <Insets left="5.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font name="Arial" size="12.0" />
-                            </font>
+                        <Label fx:id="lblSemuaTugas1" prefHeight="35.0" prefWidth="75.0" styleClass="sidebar-label" text="Semua Tugas">
+                            <HBox.margin><Insets left="5.0" /></HBox.margin>
+                            <font><Font name="Arial" size="12.0" /></font>
                         </Label>
                     </children>
                 </HBox>
-                <HBox fx:id="btnKategori" alignment="CENTER" onMouseClicked="#handleKategoriClick" prefHeight="35.0" prefWidth="150.0" styleClass="selected" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css">
+                <HBox fx:id="btnKategori" alignment="CENTER" onMouseClicked="#handleKategoriClick" prefHeight="35.0" prefWidth="150.0" styleClass="selected" stylesheets="@../css/styles.css">
                     <children>
-                        <ImageView fx:id="lgKategori" fitHeight="15.0" fitWidth="15.0" onMouseClicked="#handleKategoriClick" pickOnBounds="true" preserveRatio="true" styleClass="sidebar-icon">
-                            <image>
-                                <Image url="@../images/application.png" />
-                            </image>
+                        <ImageView fx:id="lgKategori" fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                            <image><Image url="@../images/application.png" /></image>
                         </ImageView>
-                        <Label fx:id="lblKategori1" onMouseClicked="#handleKategoriClick" prefHeight="35.0" prefWidth="75.0" styleClass="sidebar-label" stylesheets="@../css/styles.css" text="Kategori">
-                            <HBox.margin>
-                                <Insets left="5.0" />
-                            </HBox.margin>
+                        <Label fx:id="lblKategori1" prefHeight="35.0" prefWidth="75.0" styleClass="sidebar-label" text="Kategori">
+                            <HBox.margin><Insets left="5.0" /></HBox.margin>
                         </Label>
                     </children>
                 </HBox>
-                <HBox fx:id="btnPrioritas" alignment="CENTER" onMouseClicked="#handlePrioritasClick" prefHeight="35.0" prefWidth="150.0" styleClass="sidebar-item" stylesheets="@../../../../../java/com/rplbo/ukdw/todolistfix/css/styles.css">
+                <HBox fx:id="btnPrioritas" alignment="CENTER" onMouseClicked="#handlePrioritasClick" prefHeight="35.0" prefWidth="150.0" styleClass="sidebar-item" stylesheets="@../css/styles.css">
                     <children>
-                        <ImageView fx:id="lgPrioritas" fitHeight="35.0" fitWidth="15.0" onMouseClicked="#handlePrioritasClick" pickOnBounds="true" preserveRatio="true" styleClass="sidebar-icon">
-                            <image>
-                                <Image url="@../images/star.png" />
-                            </image>
+                        <ImageView fx:id="lgPrioritas" fitHeight="35.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                            <image><Image url="@../images/star.png" /></image>
                         </ImageView>
-                        <Label fx:id="lblPrioritas1" onMouseClicked="#handlePrioritasClick" prefHeight="35.0" prefWidth="75.0" styleClass="sidebar-label" stylesheets="@../css/styles.css" text="Prioritas">
-                            <HBox.margin>
-                                <Insets left="5.0" />
-                            </HBox.margin>
+                        <Label fx:id="lblPrioritas1" prefHeight="35.0" prefWidth="75.0" styleClass="sidebar-label" text="Prioritas">
+                            <HBox.margin><Insets left="5.0" /></HBox.margin>
                         </Label>
                     </children>
                 </HBox>
-                <Pane prefHeight="135.0" prefWidth="135.0" />
+                <Pane prefHeight="135.0" prefWidth="135.0">
+                    <children>
+                        <HBox fx:id="btnExit" alignment="CENTER_LEFT" layoutY="96.0" onMouseClicked="#handleExitClick" prefHeight="41.0" prefWidth="135.0" styleClass="sidebar-item-exitlogout" stylesheets="@../css/styles.css">
+                            <children>
+                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" styleClass="sidebar-icon">
+                                    <image><Image url="@../images/exit.png" /></image>
+                                </ImageView>
+                                <Label onMouseClicked="#handleExitClick" prefHeight="35.0" prefWidth="70.0" styleClass="sidebar-label" stylesheets="@../css/styles.css" text="Exit">
+                                    <HBox.margin><Insets /></HBox.margin>
+                                </Label>
+                            </children>
+                        </HBox>
+                    </children>
+                </Pane>
+
+                <HBox fx:id="btnLogOut" alignment="CENTER" onMouseClicked="#handleLogoutClick" prefHeight="35.0" prefWidth="150.0" styleClass="sidebar-item-exitlogout" stylesheets="@../css/styles.css">
+                    <children>
+                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" styleClass="sidebar-icon">
+                            <image><Image url="@../images/logout.png" /></image>
+                        </ImageView>
+                        <Label onMouseClicked="#handleLogoutClick" prefHeight="35.0" prefWidth="70.0" styleClass="sidebar-label" stylesheets="@../css/styles.css" text="Log Out">
+                            <HBox.margin><Insets left="5.0" /></HBox.margin>
+                        </Label>
+                    </children>
+                </HBox>
             </children>
         </VBox>
     </left>
     <center>
-        <Pane prefHeight="500.0" prefWidth="800.0">
-            <children>
-                <VBox alignment="CENTER" prefHeight="449.0" prefWidth="666.0">
-                    <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="236.0" text="Semua Kategori (2)" textFill="#ffaf00">
-                            <font>
-                                <Font name="Arial Bold" size="23.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets bottom="25.0" />
-                            </VBox.margin>
-                        </Label>
-                        <TableView fx:id="tabell" prefHeight="214.0" prefWidth="500.0">
-                            <columns>
-                                <TableColumn fx:id="no" prefWidth="36.79995882511139" text="No" />
-                                <TableColumn fx:id="namaKategori" prefWidth="150.80004119873047" text="Nama Kategori" />
-                                <TableColumn fx:id="deskripsi" prefWidth="150.2000427246094" text="Deskripsi" />
-                                <TableColumn fx:id="daftarTugasKolom" prefWidth="304.2000427246094" text="Daftar Tugas" />
-                            </columns>
-                            <VBox.margin>
-                                <Insets bottom="50.0" right="2.0" />
-                            </VBox.margin>
-                        </TableView>
-                        <Pane prefHeight="71.0" prefWidth="667.0">
-                            <children>
-                                <Button fx:id="btnEditKategori" layoutX="252.0" layoutY="28.0" mnemonicParsing="false" onAction="#handleEditKategori" prefHeight="59.0" prefWidth="164.0" styleClass="btn-tambah" stylesheets="@../css/styles.css" text="Edit Kategori">
-                                    <font>
-                                        <Font name="Arial" size="12.0" />
-                                    </font>
-                                    <padding>
-                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                    </padding>
-                                </Button>
-                                <Button layoutX="45.0" layoutY="28.0" mnemonicParsing="false" onAction="#handleTambahKategori" prefHeight="59.0" prefWidth="164.0" styleClass="btn-tambah" stylesheets="@../css/styles.css" text="Tambah Kategori">
-                                    <font>
-                                        <Font name="Arial" size="12.0" />
-                                    </font>
-                                    <padding>
-                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                    </padding>
-                                </Button>
-                                <Button fx:id="btnHapusKategori" layoutX="458.0" layoutY="28.0" mnemonicParsing="false" onAction="#handleHapusKategori" prefHeight="59.0" prefWidth="164.0" styleClass="btn-tambah" stylesheets="@../css/styles.css" text="Hapus Kategori">
-                                    <font>
-                                        <Font name="Arial" size="12.0" />
-                                    </font>
-                                    <padding>
-                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                    </padding>
-                                </Button>
-                            </children>
-                            <opaqueInsets>
-                                <Insets />
-                            </opaqueInsets>
-                            <VBox.margin>
-                                <Insets bottom="5.0" />
-                            </VBox.margin>
-                        </Pane>
-                        <!--                  <TableView fx:id="tabell" prefHeight="258.0" prefWidth="662.0" tableMenuButtonVisible="true">-->
-                        <!--                     <columns>-->
-                        <!--                        <TableColumn fx:id="no" prefWidth="75.0" text="No" />-->
-                        <!--                        <TableColumn fx:id="judulTugas" prefWidth="217.59999084472656" text="Judul Tugas" />-->
-                        <!--                        <TableColumn fx:id="deskripsi" prefWidth="188.00006103515625" text="Deskripsi" />-->
-                        <!--                        <TableColumn fx:id="status" prefWidth="181.5999755859375" text="Status" />-->
-                        <!--                     </columns>-->
-                        <!--                  </TableView>-->
-                        <!--                  <Button fx:id="btnTambahTugas" alignment="CENTER" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="53.0" prefWidth="157.0" text="Tambah Tugas Baru" textAlignment="CENTER" wrapText="true">-->
-                        <!--                     <font>-->
-                        <!--                        <Font size="14.0" />-->
-                        <!--                     </font>-->
-                        <!--                     <VBox.margin>-->
-                        <!--                        <Insets left="450.0" top="15.0" />-->
-                        <!--                     </VBox.margin>-->
-                        <!--                  </Button>-->
-                    </children>
-                </VBox>
-            </children>
-        </Pane>
+        <VBox prefHeight="450.0" prefWidth="667.0" spacing="0" style="-fx-background-color: #F7F8FC;" stylesheets="@../css/styles.css">
+            <padding><Insets bottom="20.0" left="24.0" right="24.0" top="20.0" /></padding>
+
+            <!-- Page Header -->
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" spacing="12">
+                <children>
+                    <VBox spacing="2" HBox.hgrow="ALWAYS">
+                        <children>
+                            <Label fx:id="lblJumlahKategori" styleClass="page-title" stylesheets="@../css/styles.css" text="Semua Kategori" />
+                            <Label styleClass="page-subtitle" stylesheets="@../css/styles.css" text="Kelola semua kategori tugasmu" />
+                        </children>
+                    </VBox>
+                    <!-- Action Buttons aligned right -->
+                    <HBox alignment="CENTER_RIGHT" prefHeight="58.0" prefWidth="334.0" spacing="10">
+                        <children>
+                            <Button onAction="#handleTambahKategori" prefHeight="34.0" prefWidth="110.0" styleClass="btn-primary" stylesheets="@../css/styles.css" text="+ Tambah">
+                                <font><Font name="Arial Bold" size="12.0" /></font>
+                            </Button>
+                            <Button fx:id="btnEditKategori" onAction="#handleEditKategori" prefHeight="34.0" prefWidth="89.0" styleClass="btn-secondary" stylesheets="@../css/styles.css" text="✎ Edit" />
+                            <Button fx:id="btnHapusKategori" onAction="#handleHapusKategori" prefHeight="34.0" prefWidth="106.0" styleClass="btn-danger" stylesheets="@../css/styles.css" text="✕ Hapus">
+                                <font><Font name="Arial Bold" size="12.0" /></font>
+                            </Button>
+                        </children>
+                    </HBox>
+                </children>
+                <VBox.margin><Insets bottom="16.0" /></VBox.margin>
+            </HBox>
+
+            <!-- Table -->
+            <TableView fx:id="tabell" prefHeight="340.0" prefWidth="619.0" styleClass="custom-table" stylesheets="@../css/styles.css" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="no" prefWidth="50.0" text="No" />
+                    <TableColumn fx:id="namaKategori" prefWidth="160.0" text="Nama Kategori" />
+                    <TableColumn fx:id="deskripsi" prefWidth="200.0" text="Deskripsi" />
+                    <TableColumn fx:id="daftarTugasKolom" prefWidth="209.0" text="Daftar Tugas" />
+                </columns>
+            </TableView>
+        </VBox>
     </center>
 </BorderPane>

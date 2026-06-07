@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx/17"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.rplbo.ukdw.todolistfix.controller.CustomDialogController"
+           style="-fx-background-color: transparent; -fx-padding: 0;">
+
+    <VBox fx:id="dialogCard"
+          alignment="CENTER"
+          spacing="10"
+          prefWidth="320"
+          maxWidth="320"
+          styleClass="dialog-card">
+
+        <padding>
+            <Insets top="24" right="24" bottom="20" left="24"/>
+        </padding>
+
+        <Label fx:id="lblIcon" styleClass="dialog-icon"/>
+
+        <Label fx:id="lblTitle"
+               styleClass="dialog-title"
+               wrapText="true"
+               textAlignment="CENTER"/>
+
+        <Label fx:id="lblMessage"
+               wrapText="true"
+               textAlignment="CENTER"
+               styleClass="dialog-message"/>
+
+        <HBox alignment="CENTER" spacing="10" style="-fx-padding: 6 0 0 0;">
+            <Button fx:id="btnCancel"
+                    text="Batal"
+                    visible="false"
+                    managed="false"
+                    onAction="#handleCancel"
+                    styleClass="btn-dialog-cancel"
+                    prefWidth="110" prefHeight="36"/>
+
+            <Button fx:id="btnOk"
+                    text="OK"
+                    onAction="#handleOk"
+                    styleClass="btn-dialog-ok"
+                    prefWidth="110" prefHeight="36"/>
+        </HBox>
+
+    </VBox>
+
+</StackPane>

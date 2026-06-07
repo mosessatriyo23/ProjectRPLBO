@@ -4,7 +4,7 @@ import com.rplbo.ukdw.todolistfix.ToDoListApplication;
 import com.rplbo.ukdw.todolistfix.model.Task;
 import com.rplbo.ukdw.todolistfix.dao.TaskDao;
 import com.rplbo.ukdw.todolistfix.dao.TaskDAOManager;
-import com.rplbo.ukdw.todolistfix.util.DatabaseUtil; // Hanya jika getUsernameFromDatabase ada di sini
+import com.rplbo.ukdw.todolistfix.util.DatabaseUtil;
 import com.rplbo.ukdw.todolistfix.util.SessionHelper;
 
 import javafx.application.Platform;
@@ -21,15 +21,16 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.stage.Modality; // Untuk form edit
+import javafx.stage.Modality;
 import javafx.stage.Stage;
-// import javafx.event.ActionEvent; // Tidak dipakai jika TextField search tidak punya onAction
+import javafx.event.ActionEvent;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection; // Hanya jika getUsernameFromDatabase masih di sini
-import java.sql.PreparedStatement; // Hanya jika getUsernameFromDatabase masih di sini
-import java.sql.ResultSet; // Hanya jika getUsernameFromDatabase masih di sini
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -40,7 +41,6 @@ import java.util.ResourceBundle;
 
 public class SemuaTugasController implements Initializable, SearchableController {
 
-    // --- FXML Fields ---
     @FXML private TableView<Task> tabell;
     @FXML private TableColumn<Task, Integer> no;
     @FXML private TableColumn<Task, String> judulTugas;
@@ -123,6 +123,21 @@ public class SemuaTugasController implements Initializable, SearchableController
         startClockThread();
     }
 
+    @FXML private void handleExitClick(MouseEvent event) {
+        System.out.println("handleExitClick dipanggil!");
+        Platform.exit();
+    }
+
+    @FXML private void handleLogoutClick(MouseEvent event) {
+        SessionHelper.clearUserId();
+        try {
+            ToDoListApplication.setRoot("login", "Login", false);
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Logout Error", "Gagal kembali ke halaman login.");
+        }
+    }
+
     private void setupActionButtons() {
         setupEditAndDeleteButtons();
         setupKolomSelesai();
@@ -136,6 +151,7 @@ public class SemuaTugasController implements Initializable, SearchableController
         kolomAksiSelesai.setCellFactory(param -> new TableCell<Task, Void>() {
             private final Button btnSelesaikan = new Button("Selesai");
             {
+                btnSelesaikan.getStyleClass().add("btn-primary");
                 btnSelesaikan.setOnAction(event -> {
                     if (getIndex() >= 0 && getIndex() < getTableView().getItems().size()) {
                         Task task = getTableView().getItems().get(getIndex());
@@ -167,29 +183,36 @@ public class SemuaTugasController implements Initializable, SearchableController
         if (task == null || this.currentidUser == -1) return;
         System.out.println("[SemuaTugasController] Menyelesaikan dan menghapus tugas ID: " + task.getId() + " dari DB.");
         try {
-            boolean success = taskDao.deleteTask(task.getId(), this.currentidUser);
+            boolean success = taskDao.updateTaskProgress(
+                    task.getId(),
+                    "Selesai",
+                    this.currentidUser
+            );
 
             if (success) {
-                System.out.println("[SemuaTugasController] Tugas ID: " + task.getId() + " berhasil dihapus dari DB.");
-                boolean removed = taskList.remove(task);
-                if(removed) {
-                    System.out.println("[SemuaTugasController] Tugas ID: " + task.getId() + " dihapus dari taskList UI.");
-                } else {
-                    System.out.println("[SemuaTugasController] Peringatan: Tugas ID: " + task.getId() + " tidak ditemukan di taskList UI setelah dihapus dari DB. Memuat ulang untuk sinkronisasi...");
-                    loadTugas();
-                    return;
-                }
+
+                taskList.remove(task);
 
                 if (lblSumSemuaTugas != null) {
-                    lblSumSemuaTugas.setText("Tugas Aktif (" + this.filteredTasksList.size() + ")");
+                    lblSumSemuaTugas.setText(
+                            "Tugas Aktif (" + filteredTasksList.size() + ")"
+                    );
                 }
 
                 updateTugasSelesaiCountDisplay();
 
-                showAlert(Alert.AlertType.INFORMATION, "Sukses", "Tugas '" + task.getJudul() + "' telah diselesaikan dan dihapus.");
+                showAlert(
+                        Alert.AlertType.INFORMATION,
+                        "Sukses",
+                        "Tugas berhasil dipindahkan ke arsip selesai."
+                );
+
             } else {
-                System.err.println("[SemuaTugasController] Gagal menghapus tugas ID: " + task.getId() + " dari database (DAO mengembalikan false).");
-                showAlert(Alert.AlertType.ERROR, "Gagal", "Gagal menghapus tugas dari database. Tugas mungkin tidak ditemukan atau bukan milik Anda.");
+                showAlert(
+                        Alert.AlertType.ERROR,
+                        "Gagal",
+                        "Gagal memperbarui status tugas."
+                );
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -206,7 +229,6 @@ public class SemuaTugasController implements Initializable, SearchableController
         try {
             int count = taskDao.countTasksByProgress(this.currentidUser, "Selesai");
             lblTugasSelesaiCount.setText("Arsip Selesai: " + count);
-            System.out.println("[SemuaTugasController] Jumlah tugas 'Selesai' (di DB): " + count);
         } catch (SQLException e) {
             e.printStackTrace();
             lblTugasSelesaiCount.setText("Tugas Selesai: Error DB");
@@ -217,7 +239,6 @@ public class SemuaTugasController implements Initializable, SearchableController
         String lowerCaseFilter = (query == null) ? "" : query.toLowerCase().trim();
 
         if (this.filteredTasksList == null) {
-            System.err.println("[SemuaTugasController] filteredTasksList null di applyFilter.");
             return;
         }
 
@@ -227,12 +248,10 @@ public class SemuaTugasController implements Initializable, SearchableController
             if (lowerCaseFilter.isEmpty()) {
                 return true;
             }
-
             boolean titleMatch = false;
             if (task.getJudul() != null) {
                 titleMatch = task.getJudul().toLowerCase().contains(lowerCaseFilter);
             }
-
             return titleMatch;
         });
 
@@ -374,6 +393,7 @@ public class SemuaTugasController implements Initializable, SearchableController
             }
 
             Stage editStage = new Stage();
+            editStage.initStyle(StageStyle.UNDECORATED);
             editStage.setTitle("Edit Tugas: " + task.getJudul());
             editStage.setScene(new Scene(root));
             editStage.initModality(Modality.WINDOW_MODAL);
@@ -396,7 +416,7 @@ public class SemuaTugasController implements Initializable, SearchableController
 
     private String getUsernameFromDatabase(int userId) {
         if (userId == -1) return "Guest";
-        String username = "User"; // Default
+        String username = "User";
         String query = "SELECT username FROM users WHERE id = ?";
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -412,7 +432,6 @@ public class SemuaTugasController implements Initializable, SearchableController
         }
         return username;
     }
-
 
     private void loadScene(String fxmlPath) {
         if (btnHome == null || btnHome.getScene() == null) {
@@ -482,34 +501,29 @@ public class SemuaTugasController implements Initializable, SearchableController
     @FXML private void handleHomeClick(MouseEvent event) { loadScene("/com/rplbo/ukdw/todolistfix/todolist.fxml"); }
     @FXML private void handleKategoriClick(MouseEvent event) { loadScene("/com/rplbo/ukdw/todolistfix/kategori.fxml"); }
     @FXML private void handlePrioritasClick(MouseEvent event) { loadScene("/com/rplbo/ukdw/todolistfix/prioritas.fxml"); }
-    @FXML private void handleLogoutClick(MouseEvent event) {
-        SessionHelper.clearUserId();
-        try {
-            ToDoListApplication.setRoot("login.fxml", "Login", false);
-        } catch (IOException e) {
-            e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Logout Error", "Gagal kembali ke halaman login.");
-        }
-    }
 
-    public void actionTambahTugas(MouseEvent mouseEvent) {
+    @FXML
+    private void actionTambahTugas(ActionEvent event) {
         System.out.println("[SemuaTugasController] Tombol Tambah Tugas diklik.");
-        if (btnTambahTugas == null || btnTambahTugas.getScene() == null) {
-            showAlert(Alert.AlertType.ERROR, "Kesalahan Navigasi", "Tidak dapat membuka form tambah tugas (referensi tombol null).");
-            return;
-        }
+
         try {
-            String fxmlPathTambah = "/com/rplbo/ukdw/todolistfix/tambahtugas.fxml";
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPathTambah));
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com/rplbo/ukdw/todolistfix/tambahtugas.fxml")
+            );
+
             Parent root = loader.load();
 
-            Stage currentStage = (Stage) btnTambahTugas.getScene().getWindow();
-            currentStage.setScene(new Scene(root));
-            currentStage.setTitle("Tambah Tugas Baru");
+            Stage stage = (Stage) btnTambahTugas.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Tambah Tugas Baru");
 
         } catch (IOException e) {
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Kesalahan Pemuatan FXML", "Gagal memuat halaman tambah tugas: " + e.getMessage());
+            showAlert(
+                    Alert.AlertType.ERROR,
+                    "Kesalahan Pemuatan FXML",
+                    "Gagal memuat halaman tambah tugas: " + e.getMessage()
+            );
         }
     }
 }

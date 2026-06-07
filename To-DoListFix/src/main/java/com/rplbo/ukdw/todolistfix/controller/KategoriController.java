@@ -23,6 +23,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.text.Text;
+import javafx.stage.StageStyle;
 
 
 import java.io.IOException;
@@ -33,7 +34,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Collections; // Import untuk Collections.emptyList()
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -135,10 +136,25 @@ public class KategoriController implements Initializable {
                 Text text = new Text();
                 cell.setGraphic(text);
                 cell.setPrefHeight(Control.USE_COMPUTED_SIZE);
-                text.wrappingWidthProperty().bind(daftarTugasKolom.widthProperty().subtract(10)); // Kurangi sedikit untuk padding
+                text.wrappingWidthProperty().bind(daftarTugasKolom.widthProperty().subtract(10));
                 text.textProperty().bind(cell.itemProperty());
                 return cell;
             });
+        }
+    }
+
+    @FXML private void handleExitClick(MouseEvent event) {
+        System.out.println("handleExitClick dipanggil!");
+        Platform.exit();
+    }
+
+    @FXML private void handleLogoutClick(MouseEvent event) {
+        SessionHelper.clearUserId();
+        try {
+            ToDoListApplication.setRoot("login", "Login", false);
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Logout Error", "Gagal kembali ke halaman login.");
         }
     }
 
@@ -180,7 +196,6 @@ public class KategoriController implements Initializable {
             }
         }
     }
-
 
     private String getUsernameFromDatabase(int userId) {
         String query = "SELECT username FROM users WHERE id = ?";
@@ -248,15 +263,6 @@ public class KategoriController implements Initializable {
     @FXML private void handleHomeClick(MouseEvent event) throws IOException { loadSceneFromEvent("todolist.fxml", event); }
     @FXML private void handleKategoriClick(MouseEvent event) throws IOException { loadKategoriData(); }
     @FXML private void handlePrioritasClick(MouseEvent event) throws IOException { loadSceneFromEvent("prioritas.fxml", event); }
-    @FXML private void handleLogoutClick(MouseEvent event) {
-        SessionHelper.clearUserId();
-        try {
-            ToDoListApplication.setRoot("login.fxml", "Login", false); // Pastikan path FXML benar
-        } catch (IOException e) {
-            e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Logout Error","Gagal kembali ke halaman login.");
-        }
-    }
 
 
     @FXML
@@ -296,16 +302,16 @@ public class KategoriController implements Initializable {
             controller.initData(kategoriDao, this, kategoriToEdit);
 
             Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.setTitle(windowTitle);
             stage.initModality(Modality.APPLICATION_MODAL);
             if (tabell != null && tabell.getScene() != null && tabell.getScene().getWindow() != null) {
                 stage.initOwner(tabell.getScene().getWindow());
             } else if (btnHome != null && btnHome.getScene() != null && btnHome.getScene().getWindow() != null){
-                stage.initOwner(btnHome.getScene().getWindow()); // Fallback jika tabel scene null
+                stage.initOwner(btnHome.getScene().getWindow());
             }
             stage.setScene(new Scene(root));
             stage.showAndWait();
-
         } catch (IOException e) {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Gagal Membuka Form", "Tidak dapat membuka form kategori: " + e.getMessage());

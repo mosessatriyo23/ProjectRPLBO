@@ -8,19 +8,17 @@ import java.sql.Statement;
 public class DatabaseUtil {
     private static final String DB_URL = "jdbc:sqlite:UserDB.sqlite";
 
-    // Static block to ensure driver is loaded once when class is initialized
     static {
         try {
             Class.forName("org.sqlite.JDBC");
             System.out.println("SQLite JDBC driver successfully loaded");
         } catch (ClassNotFoundException e) {
             System.err.println("FATAL ERROR: SQLite JDBC driver not found");
-            System.exit(1); // Exit if driver not available
+            System.exit(1);
         }
     }
 
     public static Connection getConnection() throws SQLException {
-        // Now we can skip the Class.forName check here since it's done in static block
         return DriverManager.getConnection(DB_URL);
     }
 
@@ -28,7 +26,6 @@ public class DatabaseUtil {
         try (Connection conn = getConnection();
              Statement stmt = conn.createStatement()) {
 
-            // Enable foreign key support (good practice)
             stmt.execute("PRAGMA foreign_keys = ON");
 
             stmt.execute("CREATE TABLE IF NOT EXISTS users (" +
@@ -36,10 +33,35 @@ public class DatabaseUtil {
                     "username TEXT UNIQUE NOT NULL, " +
                     "password TEXT NOT NULL)");
 
+            stmt.execute(
+                    "CREATE TABLE IF NOT EXISTS kategori (" +
+                            "  id             INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                            "  nama_kategori  TEXT    NOT NULL, " +
+                            "  deskripsi      TEXT, " +
+                            "  user_id        INTEGER NOT NULL, " +
+                            "  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE" +
+                            ")"
+            );
+
+// ===== TABEL TASK =====
+            stmt.execute(
+                    "CREATE TABLE IF NOT EXISTS task (" +
+                            "  id          INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                            "  judul       TEXT    NOT NULL, " +
+                            "  deskripsi   TEXT, " +
+                            "  kategori_id INTEGER, " +
+                            "  prioritas   BOOLEAN NOT NULL DEFAULT 0, " +
+                            "  idUser      INTEGER NOT NULL, " +
+                            "  deadline    TEXT, " +
+                            "  progress    TEXT    DEFAULT 'Belum Selesai', " +
+                            "  FOREIGN KEY (kategori_id) REFERENCES kategori(id) ON DELETE SET NULL, " +
+                            "  FOREIGN KEY (idUser)      REFERENCES users(id)    ON DELETE CASCADE" +
+                            ")"
+            );
+
             System.out.println("SQLite database initialized successfully");
         } catch (SQLException e) {
             System.err.println("Database initialization failed: " + e.getMessage());
-            // Consider throwing a runtime exception if initialization is critical
             throw new RuntimeException("Database initialization failed", e);
         }
     }

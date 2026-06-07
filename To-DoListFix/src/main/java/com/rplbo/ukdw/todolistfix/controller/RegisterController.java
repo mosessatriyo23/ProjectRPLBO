@@ -65,8 +65,8 @@ public class RegisterController {
         }
 
         String rawPassword = passwordField.getText();
-        String hashedPassword = BCrypt.hashpw(rawPassword, BCrypt.gensalt()); // Hash the password
-        User newUser = new User(username, hashedPassword); // Store the HASHED version
+        String hashedPassword = BCrypt.hashpw(rawPassword, BCrypt.gensalt());
+        User newUser = new User(username, hashedPassword);
         if (userDao.registerUser(newUser)) {
             errorLabel.setText("Registration successful! Please login.");
         } else {

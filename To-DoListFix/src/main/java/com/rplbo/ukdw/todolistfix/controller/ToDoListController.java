@@ -106,7 +106,6 @@ public class ToDoListController implements Initializable {
 
     public void refreshAllSummariesAndCalendar() {
         if (this.currentUserId != -1) {
-            System.out.println("[ToDoListController] Refreshing all summaries and calendar...");
             tampilkanDaftarTugas();
             loadRingkasanPrioritas();
             loadRingkasanKategori();
@@ -138,6 +137,8 @@ public class ToDoListController implements Initializable {
 
             if (tugasUntukDitampilkanDiHome.isEmpty()) {
                 vboxDaftarSemuaTugas.getChildren().add(new Label("Tidak ada tugas aktif."));
+                vboxDaftarSemuaTugas.setOpacity(0.5);
+                vboxDaftarSemuaTugas.setAlignment(Pos.CENTER);
             } else {
                 int nomor = 1;
                 for (Task tugas : tugasUntukDitampilkanDiHome) {
@@ -165,7 +166,7 @@ public class ToDoListController implements Initializable {
             return;
         }
         try {
-            List<Task> semuaTugasUser = taskDao.getTaskByUser(this.currentUserId); // Hanya tugas aktif
+            List<Task> semuaTugasUser = taskDao.getTaskByUser(this.currentUserId);
             if (semuaTugasUser == null) {
                 System.out.println("[ToDoListController] taskDao.getTaskByUser mengembalikan NULL untuk ringkasan prioritas.");
                 semuaTugasUser = Collections.emptyList();
@@ -184,7 +185,9 @@ public class ToDoListController implements Initializable {
 
             if (summaryTasks.isEmpty()) {
                 Label placeholder = new Label("Tidak ada tugas prioritas aktif.");
-                placeholder.setPadding(new Insets(5)); // Tambahkan padding agar terlihat lebih baik
+                placeholder.setPadding(new Insets(5));
+                placeholder.setOpacity(0.5);
+                vboxRingkasanPrioritas.setAlignment(Pos.CENTER);
                 vboxRingkasanPrioritas.getChildren().add(placeholder);
             } else {
                 int nomor = 1;
@@ -293,7 +296,6 @@ public class ToDoListController implements Initializable {
 
         Node priorityNode;
         if (tugas.isPrioritas()) {
-            System.out.println("  [buatBarisTugas] Tugas '" + tugas.getJudul() + "' adalah prioritas. Mencoba load star.png");
             ImageView prioritasIcon = new ImageView();
             Image starImage = loadImage("star.png");
             if (starImage != null && !starImage.isError()) {
@@ -372,6 +374,8 @@ public class ToDoListController implements Initializable {
                 }
             } else {
                 vboxRingkasanKategori.getChildren().add(new Label("Tidak ada kategori."));
+                vboxRingkasanKategori.setOpacity(0.5);
+                vboxRingkasanKategori.setAlignment(Pos.CENTER);
             }
         } catch (SQLException e) {
             e.printStackTrace();

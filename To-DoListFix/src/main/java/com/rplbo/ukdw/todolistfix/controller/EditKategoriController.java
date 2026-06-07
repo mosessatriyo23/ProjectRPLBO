@@ -2,15 +2,16 @@ package com.rplbo.ukdw.todolistfix.controller;
 
 import com.rplbo.ukdw.todolistfix.dao.KategoriDao;
 import com.rplbo.ukdw.todolistfix.model.Kategori;
+import com.rplbo.ukdw.todolistfix.util.AiService;
 import com.rplbo.ukdw.todolistfix.util.SessionHelper;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import javafx.scene.Node;
-
+import javafx.scene.control.*;
+import javafx.stage.Stage;
+import com.rplbo.ukdw.todolistfix.util.DialogUtil;
+import javafx.stage.StageStyle;
 
 import java.sql.SQLException;
 
@@ -18,15 +19,18 @@ public class EditKategoriController {
 
     @FXML
     private TextField txtIdKategori;
-
     @FXML
     private TextField txtNamaKategori;
-
     @FXML
-    private TextField txtDeskripsi;
-
+    private TextArea txtDeskripsi;
     @FXML
     private Button btnSimpan;
+
+    // AI fields
+    @FXML
+    private Label lblAiEditKategori;
+    @FXML
+    private Button btnAiEditKategori;
 
     private KategoriController kategoriControllerParent;
     private KategoriDao kategoriDao;
@@ -35,7 +39,6 @@ public class EditKategoriController {
     private String originalDeskripsi;
     private boolean isSaved = false;
     private int currentUserId;
-
 
     public void initData(KategoriDao dao, KategoriController parent, Kategori kategori) {
         this.kategoriDao = dao;
@@ -56,105 +59,137 @@ public class EditKategoriController {
                 txtDeskripsi.setText(deskripsiAsli != null ? deskripsiAsli : "");
                 originalDeskripsi = deskripsiAsli != null ? deskripsiAsli : "";
             }
-            if (btnSimpan != null) btnSimpan.setText("Update");
-
+            if (btnSimpan != null) btnSimpan.setText("Simpan");
         } else {
-            showAlert(Alert.AlertType.ERROR, "Error Inisialisasi", "Data kategori untuk diedit tidak ditemukan.");
+            DialogUtil.showError(
+                    "Error Inisialisasi",
+                    "Data kategori untuk diedit tidak ditemukan."
+            );
             closeForm();
         }
     }
 
+    // ===== AI FEATURE =====
+
+    @FXML
+    private void handleAiEditKategori(ActionEvent event) {
+        String nama = txtNamaKategori.getText().trim();
+        String deskripsiSaatIni = txtDeskripsi != null ? txtDeskripsi.getText().trim() : "";
+
+        if (nama.isEmpty()) {
+            if (lblAiEditKategori != null) lblAiEditKategori.setText("⚠️ Isi nama kategori terlebih dahulu.");
+            return;
+        }
+        if (lblAiEditKategori != null) lblAiEditKategori.setText("⏳ AI sedang memperbaiki deskripsi...");
+        if (btnAiEditKategori != null) btnAiEditKategori.setDisable(true);
+
+        Task<String> aiTask = new Task<>() {
+            @Override
+            protected String call() {
+                return AiService.improveKategoriDescription(nama, deskripsiSaatIni);
+            }
+        };
+        aiTask.setOnSucceeded(e -> {
+            String improved = aiTask.getValue();
+            if (lblAiEditKategori != null) lblAiEditKategori.setText(improved);
+            if (txtDeskripsi != null) txtDeskripsi.setText(improved);
+            if (btnAiEditKategori != null) btnAiEditKategori.setDisable(false);
+        });
+        aiTask.setOnFailed(e -> {
+            if (lblAiEditKategori != null) lblAiEditKategori.setText("⚠️ Gagal mendapatkan saran AI.");
+            if (btnAiEditKategori != null) btnAiEditKategori.setDisable(false);
+        });
+        Thread thread = new Thread(aiTask);
+        thread.setDaemon(true);
+        thread.start();
+    }
+
+    // ===== EXISTING METHODS =====
+
     @FXML
     private void handleSimpan(ActionEvent event) {
+        DialogUtil.showSuccess(
+                "TEST",
+                "INI CUSTOM DIALOG"
+        );
         if (kategoriToEdit == null) {
-            showAlert(Alert.AlertType.ERROR, "Error", "Data kategori untuk diedit tidak valid.");
+            DialogUtil.showError(
+                    "Error",
+                    "Data kategori tidak valid."
+            );
             return;
         }
-
         if (this.currentUserId == -1 || kategoriToEdit.getUserId() != this.currentUserId) {
-            showAlert(Alert.AlertType.ERROR, "Akses Ditolak", "Anda tidak memiliki izin untuk mengedit kategori ini.");
+            DialogUtil.showError(
+                    "Akses Ditolak",
+                    "Anda tidak memiliki izin untuk mengedit kategori ini."
+            );
             return;
         }
 
-        String newNamaKategori = txtNamaKategori.getText().trim();
-        String newDeskripsi = "";
-        if (txtDeskripsi != null) {
-            newDeskripsi = txtDeskripsi.getText().trim();
-        }
+        String newNama = txtNamaKategori.getText().trim();
+        String newDeskripsi = txtDeskripsi != null ? txtDeskripsi.getText().trim() : "";
 
-        if (newNamaKategori.isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, "Input Tidak Valid", "Nama Kategori tidak boleh kosong.");
+        if (newNama.isEmpty()) {
+            DialogUtil.showWarning(
+                    "Input Tidak Valid",
+                    "Nama Kategori tidak boleh kosong."
+            );
             txtNamaKategori.requestFocus();
             return;
         }
 
-        boolean namaChanged = !newNamaKategori.equals(originalNamaKategori);
+        boolean namaChanged = !newNama.equals(originalNamaKategori);
         boolean deskripsiChanged = !newDeskripsi.equals(originalDeskripsi);
-
         if (!namaChanged && !deskripsiChanged) {
-            showAlert(Alert.AlertType.INFORMATION, "Info", "Tidak ada perubahan data.");
+            DialogUtil.showWarning(
+                    "Info",
+                    "Tidak ada perubahan data."
+            );
             return;
         }
 
-        Kategori updatedKategori = new Kategori(
-                kategoriToEdit.getId(),
-                newNamaKategori,
-                newDeskripsi,
-                kategoriToEdit.getUserId() // Pertahankan userId pemilik asli
-        );
-
+        Kategori updated = new Kategori(kategoriToEdit.getId(), newNama, newDeskripsi, kategoriToEdit.getUserId());
         try {
-            boolean sukses = kategoriDao.updateKategori(updatedKategori);
+            boolean sukses = kategoriDao.updateKategori(updated);
             if (sukses) {
                 isSaved = true;
-                showAlert(Alert.AlertType.INFORMATION, "Sukses", "Kategori berhasil diperbarui.");
-                if (kategoriControllerParent != null) {
-                    kategoriControllerParent.refreshTampilanKategori();
-                }
+                DialogUtil.showSuccess(
+                        "Sukses",
+                        "Kategori berhasil diperbarui."
+                );
+                if (kategoriControllerParent != null) kategoriControllerParent.refreshTampilanKategori();
                 closeForm();
             } else {
-                isSaved = false;
-                showAlert(Alert.AlertType.ERROR, "Gagal", "Gagal memperbarui kategori. Kategori mungkin tidak ditemukan atau tidak ada perubahan.");
+                DialogUtil.showError(
+                        "Gagal",
+                        "Gagal memperbarui kategori."
+                );
             }
         } catch (SQLException e) {
             isSaved = false;
             e.printStackTrace();
-            String detailError = e.getMessage().toLowerCase();
-            if (detailError.contains("unique constraint") || detailError.contains("duplicate entry")) {
-                showAlert(Alert.AlertType.ERROR, "Database Error", "Gagal memperbarui: Nama Kategori '" + newNamaKategori + "' mungkin sudah ada untuk pengguna ini.");
-            } else {
-                showAlert(Alert.AlertType.ERROR, "Database Error", "Terjadi kesalahan SQL: " + e.getMessage());
-            }
+            DialogUtil.showError(
+                    "Database Error",
+                    "Terjadi kesalahan SQL: " + e.getMessage()
+            );
         }
     }
 
     @FXML
-    private void handleBatal(ActionEvent event) { // Jika ada tombol batal
+    private void handleBatal(ActionEvent event) {
         closeForm();
     }
 
     private void closeForm() {
-        Node sourceNode = btnSimpan;
-        if (sourceNode == null && txtNamaKategori != null) {
-            sourceNode = txtNamaKategori;
-        }
+        Node sourceNode = btnSimpan != null ? btnSimpan : txtNamaKategori;
         if (sourceNode != null && sourceNode.getScene() != null) {
             Stage stage = (Stage) sourceNode.getScene().getWindow();
-            if (stage != null) {
-                stage.close();
-            }
+            if (stage != null) stage.close();
         }
     }
 
-    public boolean isSaved(y) {
+    public boolean isSaved() {
         return isSaved;
-    }
-
-    private void showAlert(Alert.AlertType alertType, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 }

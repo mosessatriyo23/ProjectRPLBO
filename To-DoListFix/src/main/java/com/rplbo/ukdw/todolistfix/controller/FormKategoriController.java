@@ -2,27 +2,27 @@ package com.rplbo.ukdw.todolistfix.controller;
 
 import com.rplbo.ukdw.todolistfix.dao.KategoriDao;
 import com.rplbo.ukdw.todolistfix.model.Kategori;
-import com.rplbo.ukdw.todolistfix.util.SessionHelper; // Import SessionHelper
+import com.rplbo.ukdw.todolistfix.util.AiService;
+import com.rplbo.ukdw.todolistfix.util.SessionHelper;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.sql.SQLException;
 
 public class FormKategoriController {
 
-    @FXML
-    private TextField txtNamaKategori;
+    @FXML private TextField txtNamaKategori;
+    @FXML private TextArea txtDeskripsi;
+    @FXML private Button btnSimpan;
 
-    @FXML
-    private TextField txtDeskripsi;
-
-    @FXML
-    private Button btnSimpan;
+    // AI fields
+    @FXML private Label lblAiKategori;
+    @FXML private Button btnAiKategori;
 
     private KategoriController kategoriControllerParent;
     private KategoriDao kategoriDao;
@@ -34,30 +34,71 @@ public class FormKategoriController {
         this.kategoriDao = dao;
         this.kategoriControllerParent = parent;
         this.kategoriEdit = kategoriToEdit;
-
         this.currentUserId = SessionHelper.getUserId();
+
         if (this.currentUserId == -1) {
             showAlert(Alert.AlertType.ERROR, "Error", "Sesi pengguna tidak ditemukan. Silakan login kembali.");
             closeForm();
             return;
         }
 
-        if (kategoriToEdit != null) { // Mode Edit
+        if (kategoriToEdit != null) {
             this.isEditMode = true;
             txtNamaKategori.setText(kategoriToEdit.getNamaKategori());
             if (txtDeskripsi != null && kategoriToEdit.getDeskripsi() != null) {
                 txtDeskripsi.setText(kategoriToEdit.getDeskripsi());
-            } else if (txtDeskripsi != null) {
-                txtDeskripsi.clear();
             }
-            if(btnSimpan != null) btnSimpan.setText("Update");
+            if (btnSimpan != null) btnSimpan.setText("Update");
         } else {
             this.isEditMode = false;
             txtNamaKategori.clear();
-            if(txtDeskripsi != null) txtDeskripsi.clear();
-            if(btnSimpan != null) btnSimpan.setText("Simpan");
+            if (txtDeskripsi != null) txtDeskripsi.clear();
+            if (btnSimpan != null) btnSimpan.setText("Simpan");
         }
     }
+
+    // ===== AI FEATURE =====
+
+    @FXML
+    private void handleAiKategoriSuggest(ActionEvent event) {
+        String nama = txtNamaKategori.getText().trim();
+        if (nama.isEmpty()) {
+            if (lblAiKategori != null) lblAiKategori.setText("⚠️ Isi nama kategori terlebih dahulu.");
+            return;
+        }
+        if (lblAiKategori != null) lblAiKategori.setText("⏳ AI sedang membuat saran...");
+        if (btnAiKategori != null) btnAiKategori.setDisable(true);
+
+        Task<String> aiTask = new Task<>() {
+            @Override
+            protected String call() {
+                return AiService.suggestKategoriDescription(nama);
+            }
+        };
+        aiTask.setOnSucceeded(e -> {
+            String suggestion = aiTask.getValue();
+            if (lblAiKategori != null) lblAiKategori.setText(suggestion);
+            // Auto-fill description field
+            if (txtDeskripsi != null && txtDeskripsi.getText().trim().isEmpty()) {
+                txtDeskripsi.setText(suggestion);
+            }
+            if (btnAiKategori != null) btnAiKategori.setDisable(false);
+        });
+        aiTask.setOnFailed(e -> {
+            if (lblAiKategori != null) lblAiKategori.setText("⚠️ Gagal mendapatkan saran AI.");
+            if (btnAiKategori != null) btnAiKategori.setDisable(false);
+        });
+        Thread thread = new Thread(aiTask);
+        thread.setDaemon(true);
+        thread.start();
+    }
+
+    @FXML
+    private void handleBatal(ActionEvent event) {
+        closeForm();
+    }
+
+    // ===== EXISTING METHODS =====
 
     @FXML
     public void simpanData(ActionEvent event) {
@@ -69,17 +110,15 @@ public class FormKategoriController {
             txtNamaKategori.requestFocus();
             return;
         }
-
         if (this.currentUserId == -1) {
-            showAlert(Alert.AlertType.ERROR, "Error Sesi", "Tidak dapat menyimpan kategori, sesi pengguna tidak valid.");
+            showAlert(Alert.AlertType.ERROR, "Error Sesi", "Sesi pengguna tidak valid.");
             return;
         }
-
-        Kategori kategoriProses;
 
         try {
             boolean sukses;
             String pesanAksi;
+            Kategori kategoriProses;
 
             if (isEditMode) {
                 if (kategoriEdit == null || kategoriEdit.getId() == 0) {
@@ -87,62 +126,32 @@ public class FormKategoriController {
                     return;
                 }
                 kategoriProses = new Kategori(kategoriEdit.getId(), namaKategori, deskripsi, kategoriEdit.getUserId());
-
                 sukses = kategoriDao.updateKategori(kategoriProses);
                 pesanAksi = "diperbarui";
-
             } else {
                 kategoriProses = new Kategori(namaKategori, deskripsi, this.currentUserId);
-
                 sukses = kategoriDao.addKategori(kategoriProses);
                 pesanAksi = "ditambahkan";
-                if (sukses && kategoriProses.getId() != 0) {
-                    System.out.println("Kategori baru '" + kategoriProses.getNamaKategori() + "' ditambahkan dengan ID: " + kategoriProses.getId() + " untuk User ID: " + kategoriProses.getUserId());
-                }
             }
 
             if (sukses) {
                 showAlert(Alert.AlertType.INFORMATION, "Sukses", "Kategori berhasil " + pesanAksi + ".");
-                if (kategoriControllerParent != null) {
-                    kategoriControllerParent.refreshTampilanKategori();
-                }
+                if (kategoriControllerParent != null) kategoriControllerParent.refreshTampilanKategori();
                 closeForm();
             } else {
-                showAlert(Alert.AlertType.ERROR, "Gagal", "Operasi kategori gagal. Cek kembali data Anda.");
+                showAlert(Alert.AlertType.ERROR, "Gagal", "Operasi kategori gagal.");
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
-            String detailError = e.getMessage().toLowerCase();
-            if (detailError.contains("unique constraint") || detailError.contains("duplicate entry") || detailError.contains("primary key") || detailError.contains("nama_kategori")) {
-                showAlert(Alert.AlertType.ERROR, "Database Error", "Gagal menyimpan: Nama Kategori '" + namaKategori + "' mungkin sudah ada untuk pengguna ini.");
-            } else {
-                showAlert(Alert.AlertType.ERROR, "Database Error", "Terjadi kesalahan SQL: " + e.getMessage());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Error Tidak Diketahui", "Terjadi kesalahan: " + e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Database Error", "Terjadi kesalahan SQL: " + e.getMessage());
         }
-    }
-
-    @FXML
-    private void handleBatalForm(ActionEvent event) {
-        closeForm();
     }
 
     private void closeForm() {
-        Node sourceNode = btnSimpan;
-        if (sourceNode == null && txtNamaKategori != null) {
-            sourceNode = txtNamaKategori;
-        }
-
+        Node sourceNode = btnSimpan != null ? btnSimpan : txtNamaKategori;
         if (sourceNode != null && sourceNode.getScene() != null) {
             Stage stage = (Stage) sourceNode.getScene().getWindow();
-            if (stage != null) {
-                stage.close();
-            }
-        } else {
-            System.err.println("FormKategoriController: Tidak bisa menutup form, scene tidak ditemukan.");
+            if (stage != null) stage.close();
         }
     }
 

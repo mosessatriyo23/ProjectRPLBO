@@ -1,45 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.text.Font?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.rplbo.ukdw.todolistfix.controller.EditKategoriController"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="420.0" prefWidth="500.0"
+    stylesheets="@../css/styles.css"
+    style="-fx-background-color: #F7F8FC;"
+    xmlns="http://javafx.com/javafx/17.0.12"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="com.rplbo.ukdw.todolistfix.controller.EditKategoriController">
     <children>
-        <VBox spacing="10" alignment="CENTER_LEFT" layoutX="30" layoutY="20">
-            <children>
+        <VBox spacing="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+            AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
 
-                <Label text="Edit Kategori">
-                    <font>
-                        <Font size="20"/>
-                    </font>
-                </Label>
+            <!-- Header Bar -->
+            <HBox prefHeight="56.0" alignment="CENTER_LEFT" spacing="12"
+                style="-fx-background-color: #FFFFFF; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 6, 0, 0, 2);">
+                <padding><Insets left="24.0" right="24.0" /></padding>
+                <children>
+                    <Label text="✎" style="-fx-font-size: 20; -fx-text-fill: #ffaf00;" />
+                    <VBox spacing="1">
+                        <children>
+                            <Label text="Edit Kategori" styleClass="form-title" />
+                            <Label text="Perbarui nama dan deskripsi kategori" styleClass="page-subtitle" />
+                        </children>
+                    </VBox>
+                </children>
+            </HBox>
 
-                <Label text="Nama Kategori"/>
-                <TextField fx:id="txtNamaKategori" prefWidth="300"/>
+            <!-- Two Column Content -->
+            <HBox prefHeight="364.0" VBox.vgrow="ALWAYS">
 
-                <Label text="Deskripsi"/>
-                <TextArea fx:id="txtDeskripsi" prefWidth="300" prefHeight="100"/>
+                <!-- Form Column -->
+                <VBox prefWidth="300.0" spacing="14"
+                    style="-fx-background-color: #FFFFFF; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 10, 0, 0, 2);">
+                    <padding><Insets top="24.0" right="24.0" bottom="24.0" left="24.0" /></padding>
 
-                <HBox spacing="10" alignment="CENTER_RIGHT">
-                    <children>
-                        <Button text="Batal" onAction="#handleBatal"/>
-                        <Button text="Simpan" onAction="#handleSimpan"/>
-                    </children>
-                </HBox>
+                    <!-- Nama Kategori -->
+                    <VBox spacing="5">
+                        <children>
+                            <Label text="Nama Kategori" styleClass="form-label" />
+                            <TextField fx:id="txtNamaKategori" promptText="Nama kategori..."
+                                styleClass="form-input" prefHeight="36.0" prefWidth="252.0" />
+                        </children>
+                    </VBox>
 
-            </children>
-            <padding>
-                <Insets top="10" right="10" bottom="10" left="10"/>
-            </padding>
+                    <!-- Deskripsi -->
+                    <VBox spacing="5">
+                        <children>
+                            <Label text="Deskripsi" styleClass="form-label" />
+                            <TextArea fx:id="txtDeskripsi" promptText="Deskripsi kategori..."
+                                styleClass="form-textarea" prefHeight="90.0" prefWidth="252.0"
+                                wrapText="true" />
+                        </children>
+                    </VBox>
+
+                    <!-- Spacer -->
+                    <Pane VBox.vgrow="ALWAYS" />
+
+                    <!-- Buttons -->
+                    <HBox spacing="10" alignment="CENTER_RIGHT">
+                        <children>
+                            <Button text="Batal" onAction="#handleBatal"
+                                styleClass="btn-secondary" prefHeight="36.0" prefWidth="90.0" />
+                            <Button text="💾  Simpan" onAction="#handleSimpan"
+                                styleClass="btn-success" prefHeight="36.0" prefWidth="120.0">
+                                <font><Font name="Arial Bold" size="13.0" /></font>
+                            </Button>
+                        </children>
+                    </HBox>
+                </VBox>
+
+                <!-- AI Column -->
+                <VBox prefWidth="200.0" spacing="12"
+                    style="-fx-background-color: #F2F1FF; -fx-padding: 20 18;">
+
+                    <HBox alignment="CENTER_LEFT" spacing="8">
+                        <children>
+                            <Label text="✦" style="-fx-font-size: 16; -fx-text-fill: #6C63FF;" />
+                            <Label text="AI Assistant" style="-fx-font-size: 13; -fx-font-family: 'Arial Bold'; -fx-text-fill: #3D35CC;" />
+                        </children>
+                    </HBox>
+
+                    <Separator style="-fx-background-color: #C4B5FD;" />
+
+                    <Button fx:id="btnAiEditKategori" text="✦  Perbaiki Deskripsi"
+                        onAction="#handleAiEditKategori"
+                        style="-fx-background-color: linear-gradient(to right, #6C63FF, #a78bfa); -fx-text-fill: white; -fx-background-radius: 10; -fx-cursor: hand; -fx-padding: 8 12; -fx-font-size: 11; -fx-font-family: 'Arial Bold';"
+                        prefWidth="164.0" prefHeight="34.0" />
+
+                    <VBox style="-fx-background-color: #EDE8FF; -fx-background-radius: 12; -fx-border-color: #C4B5FD; -fx-border-radius: 12; -fx-border-width: 1.5; -fx-padding: 12;"
+                        spacing="6" VBox.vgrow="ALWAYS">
+                        <children>
+                            <Label text="✦ Saran AI" style="-fx-font-size: 12; -fx-font-family: 'Arial Bold'; -fx-text-fill: #6C63FF;" />
+                            <Label fx:id="lblAiEditKategori"
+                                text="AI akan membantu memperbaiki atau melengkapi deskripsi kategorimu."
+                                style="-fx-font-size: 11; -fx-text-fill: #555; -fx-wrap-text: true;"
+                                wrapText="true" prefWidth="140.0" />
+                        </children>
+                    </VBox>
+
+                </VBox>
+            </HBox>
         </VBox>
     </children>
-
 </AnchorPane>
