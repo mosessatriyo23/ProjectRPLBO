@@ -30,6 +30,8 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+import javafx.application.Platform;
 
 import java.io.IOException;
 import java.io.InputStream;

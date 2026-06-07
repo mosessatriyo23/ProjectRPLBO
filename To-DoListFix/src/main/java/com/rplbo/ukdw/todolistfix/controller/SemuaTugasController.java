@@ -181,42 +181,21 @@ public class SemuaTugasController implements Initializable, SearchableController
 
     private void selesaikanDanHapusTugasDariDb(Task task) {
         if (task == null || this.currentidUser == -1) return;
-        System.out.println("[SemuaTugasController] Menyelesaikan dan menghapus tugas ID: " + task.getId() + " dari DB.");
         try {
             boolean success = taskDao.updateTaskProgress(
-                    task.getId(),
-                    "Selesai",
-                    this.currentidUser
-            );
-
+                    task.getId(), "Selesai", this.currentidUser);
             if (success) {
-
                 taskList.remove(task);
-
-                if (lblSumSemuaTugas != null) {
-                    lblSumSemuaTugas.setText(
-                            "Tugas Aktif (" + filteredTasksList.size() + ")"
-                    );
-                }
-
+                if (lblSumSemuaTugas != null)
+                    lblSumSemuaTugas.setText("Tugas Aktif (" + filteredTasksList.size() + ")");
                 updateTugasSelesaiCountDisplay();
-
-                showAlert(
-                        Alert.AlertType.INFORMATION,
-                        "Sukses",
-                        "Tugas berhasil dipindahkan ke arsip selesai."
-                );
-
+                showAlert(Alert.AlertType.INFORMATION, "Sukses", "Tugas berhasil diselesaikan.");
             } else {
-                showAlert(
-                        Alert.AlertType.ERROR,
-                        "Gagal",
-                        "Gagal memperbarui status tugas."
-                );
+                showAlert(Alert.AlertType.ERROR, "Gagal", "Gagal memperbarui status tugas.");
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Database Error", "Terjadi kesalahan SQL saat menghapus tugas: " + e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Database Error", e.getMessage());
         }
     }
 

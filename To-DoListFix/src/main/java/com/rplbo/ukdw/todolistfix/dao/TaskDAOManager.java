@@ -156,7 +156,7 @@ public class TaskDAOManager implements TaskDao {
         String sql = "SELECT t.id, t.judul, t.deskripsi, t.kategori_id, k.nama_kategori AS namaKategoriDisplay, " +
                 "t.prioritas, t.idUser, t.deadline, t.progress " +
                 "FROM task t LEFT JOIN kategori k ON t.kategori_id = k.id " +
-                "WHERE t.idUser = ?";
+                "WHERE t.idUser = ? AND (t.progress != 'Selesai' OR t.progress IS NULL)";
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, userId);
