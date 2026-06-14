@@ -21,7 +21,7 @@
 
 ## 🍍 What is Pinnacle?
 
-**Pinnacle** is a full-featured desktop task management application developed as part of the **Object-Oriented Software Engineering** course at **Universitas Kristen Duta Wacana (UKDW)**. It goes beyond a typical CRUD app — Pinnacle integrates **Claude AI** to help users analyze tasks, get productivity suggestions, and auto-detect priority.
+**Pinnacle** is a full-featured desktop task management application developed as part of the **Object-Oriented Software Engineering** course at **Universitas Kristen Duta Wacana (UKDW)**. It goes beyond a typical CRUD app — Pinnacle integrates **Groq AI** to help users analyze tasks, get productivity suggestions, and auto-detect priority.
 
 Built with a clean multi-layer architecture that strictly separates business logic, data access, and presentation — engineered for maintainability and extensibility.
 
