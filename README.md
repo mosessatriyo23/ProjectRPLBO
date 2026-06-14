@@ -15,8 +15,6 @@
 ![JavaFX](https://img.shields.io/badge/JavaFX-17-0066CC?style=for-the-badge&logo=java&logoColor=white)
 ![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
 ![Maven](https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white)
-![Claude AI](https://img.shields.io/badge/Claude_AI-CC785C?style=for-the-badge&logo=anthropic&logoColor=white)
-
 </div>
 
 ---
@@ -42,7 +40,7 @@ Built with a clean multi-layer architecture that strictly separates business log
 - Assign tasks to categories dynamically
 - Category-based task filtering and overview
 
-### 🤖 AI Assistant (Claude API)
+### 🤖 AI Assistant (Groq API)
 - **Task Analysis** — get smart suggestions on how to approach a task effectively
 - **Auto-Priority Detection** — AI recommends whether a task should be marked as priority
 - **Category Description Generator** — AI writes category descriptions based on the name
@@ -86,7 +84,7 @@ src/
 │   └── Kategori.java
 │
 └── util/               # Utilities
-    ├── AiService.java      (Claude API integration)
+    ├── AiService.java      (Groq API integration)
     ├── DatabaseUtil.java   (SQLite connection)
     ├── DialogUtil.java     (custom dialog factory)
     └── SessionHelper.java  (user session)
@@ -102,7 +100,7 @@ src/
 | UI Framework | JavaFX 17 + FXML |
 | Build Tool | Apache Maven |
 | Database | SQLite (via JDBC) |
-| AI Integration | Anthropic Claude API (`claude-haiku-4-5`) |
+| AI Integration | Groq API |
 | IDE | IntelliJ IDEA + Scene Builder |
 | Security | BCrypt password hashing |
 
@@ -185,5 +183,5 @@ This project is developed for academic purposes as part of coursework at UKDW.
 ---
 
 <div align="center">
-  <sub>Built with ☕ Java, 🍍 Pinnacle spirit, and a little help from 🤖 Claude AI</sub>
+  <sub>Built with ☕ Java, 🍍 Pinnacle spirit</sub>
 </div>
